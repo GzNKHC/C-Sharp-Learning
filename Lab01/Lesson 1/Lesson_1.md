@@ -4,7 +4,7 @@
 
 ---
 
-### Exercise 1 — Student Information
+### Exercise 1 - Student Information
 
 #### Code
 
@@ -30,7 +30,7 @@ Console.WriteLine("""
 
 ---
 
-### Exercise 2 — Perimeter & Area of a Circle
+### Exercise 2 - Perimeter & Area of a Circle
 
 #### Code
 
@@ -62,7 +62,7 @@ Perimeter of circle: 31.41592653589793
 
 ---
 
-### Exercise 3 — Convert Time to Seconds
+### Exercise 3 - Convert Time to Seconds
 
 #### Code
 
@@ -99,7 +99,7 @@ Sum of 1:2:3 is: 3723s
 
 ---
 
-### Exercise 4 — Convert Seconds to Time
+### Exercise 4 - Convert Seconds to Time
 
 #### Code
 
@@ -130,7 +130,7 @@ Console.WriteLine($"{s}s is: {h}:{m}:{sec}");
 
 ---
 
-### Exercise 5 — Area of a Triangle
+### Exercise 5 - Area of a Triangle
 
 #### Code
 
@@ -168,7 +168,7 @@ Area of triangle: 6.00
 
 ---
 
-### Exercise 6 — Calculate a^n
+### Exercise 6 - Cal a^n
 
 #### Code
 
