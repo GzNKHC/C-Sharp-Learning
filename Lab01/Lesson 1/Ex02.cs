@@ -4,7 +4,6 @@ Console.WriteLine("Enter radius: ");
 
 double r = double.Parse(Console.ReadLine());
 
-// Process
 double area = Math.PI * r * r;
 double perimeter = Math.PI * r * 2;
 
