@@ -9,7 +9,7 @@ This file records mu learning progress and completed exercises in C#
  ### Sep 7,2026:
 
   - Complete Lesson 1
-  - Finished exercises Ex1 -> Ex8
+  - Finished exercises Ex01 -> Ex06
   - Topics:
     + Basic syntax
     + Variables
