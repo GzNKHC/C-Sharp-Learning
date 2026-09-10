@@ -18,5 +18,17 @@ This file records mu learning progress and completed exercises in C#
  ### Sep 8, 2026:
  - Complete Lesson 2
  - Finished exercises Ex01 -> Ex05
+ - Topic:
+   + Input, Process, Output
+   + Basic data types
+   + Arithmetic operators
+   + Comparison operators
+   + Type casting
 
+ ### Sep 9, 2026:
+ - Complete Lesson 3
+ - Finished exercises Ex01 -> Ex05
+ - Topic:
+    + Functions and methods
+    + If-else and switch-case
  ...
