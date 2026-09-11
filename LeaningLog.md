@@ -36,6 +36,7 @@ This file records mu learning progress and completed exercises in C#
   - Complete Lesson 4
   - Fishished exercise Ex01 -> Ex05
   - Topic:
-    + ...
+    + If-else branching
+    + Linear equation systems
 
  ...
