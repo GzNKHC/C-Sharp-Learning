@@ -8,7 +8,7 @@ This file records mu learning progress and completed exercises in C#
 
  ### Sep 7, 2026:
 
-  - Complete Lesson 1
+  - Complete Lesson 1 (Lab 01)
   - Finished exercises Ex01 -> Ex07
   - Topics:
     + Basic syntax
@@ -16,7 +16,7 @@ This file records mu learning progress and completed exercises in C#
     + Basic input/output
  
  ### Sep 8, 2026:
- - Complete Lesson 2
+ - Complete Lesson 2 (Lab 01)
  - Finished exercises Ex01 -> Ex05
  - Topic:
    + Input, Process, Output
@@ -26,17 +26,23 @@ This file records mu learning progress and completed exercises in C#
    + Type casting
 
  ### Sep 9, 2026:
- - Complete Lesson 3
+ - Complete Lesson 3 (Lab 01)
  - Finished exercises Ex01 -> Ex05
  - Topic:
     + Functions and methods
     + If-else and switch-case
 
  ### Sep 10, 2026;
-  - Complete Lesson 4
-  - Fishished exercise Ex01 -> Ex05
+  - Complete Lesson 4 (Lab 01)
+  - Finished exercise Ex01 -> Ex05
   - Topic:
     + If-else branching
     + Linear equation systems
 
- ...
+ ### Sep 15, 2026;
+ - Building Lab 02
+ - Finished exercise Ex01 -> Ex06
+
+ ### Sep 16, 2026;
+ - Building Lab 02
+ - Finished exercise Ex07 -> Ex9
