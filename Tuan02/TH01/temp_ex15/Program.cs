@@ -44,51 +44,6 @@ class NumList
         Max = {max}
         """);
     }
-
-    public void DisplayArray()
-    {
-        if (ls.Count == 0)
-        {
-            Console.WriteLine("Mảng rỗng.");
-            return;
-        }
-
-        Console.Write("Mảng của bạn là: ");
-        foreach (int value in ls)
-        {
-            Console.Write(value + " ");
-        }
-        Console.WriteLine();
-    }
-
-    private bool PrimeChecker(int n) 
-    {
-        if (n < 2) 
-        return false;
-        for (int i = 2; i * i <= n; i++) {
-            if(n % i == 0) 
-            return false;
-        }
-        return true;    
-    }
-
-    public void DisplayPrimeArray()
-    {
-        if (ls.Count == 0)
-        {
-            Console.WriteLine("Mảng rỗng.");
-            return;
-        }
-
-        Console.WriteLine("Số nguyên tố trong mảng là: ");
-        foreach (int value in ls)
-        {
-            if (PrimeChecker(value)) {
-            Console.Write(value + " ");
-            }
-        }
-        Console.WriteLine();
-    }
 }
 
 class Program
@@ -97,8 +52,6 @@ class Program
     {
         NumList obj = new NumList();
         obj.ArrayInput();
-        obj.DisplayArray();
         obj.FindMinMax();
-        obj.DisplayPrimeArray();
     }
 }

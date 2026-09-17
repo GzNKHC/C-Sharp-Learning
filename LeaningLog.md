@@ -42,7 +42,19 @@ This file records mu learning progress and completed exercises in C#
  ### Sep 15, 2026;
  - Building Lab 02
  - Finished exercise Ex01 -> Ex06
+ - Topic:
+  + Basic input, output
 
  ### Sep 16, 2026;
  - Building Lab 02
  - Finished exercise Ex07 -> Ex9
+ - Topic:
+  + learning how to use ref, out
+
+ ### Sep 17, 2026;
+ - Building Lab 02
+ - Finished exercise Ex010 -> Ex15
+ - Topic: 
+  + Basic string
+  + Building class
+  + Basic array list
