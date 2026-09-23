@@ -65,4 +65,4 @@ This file records mu learning progress and completed exercises in C#
   
 ### Sep 23, 2026
  - Building Week 2
- - Finished exercise Ex1 (2.1 -> 2.5)
+ - Finished exercise Ex2 (2.1 -> 2.7)
