@@ -70,3 +70,5 @@ This file records mu learning progress and completed exercises in C#
 ### Sep 24, 2026:
  - Building Week 2
  - Finished excercise Ex3 (3.1 -> 3.6)
+ - Topic:
+  + Learning and understand: Interface, IComparable<T>, <T>, delegate, event, virtual
