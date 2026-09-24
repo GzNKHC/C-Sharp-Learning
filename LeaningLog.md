@@ -32,26 +32,26 @@ This file records mu learning progress and completed exercises in C#
     + Functions and methods
     + If-else and switch-case
 
- ### Sep 10, 2026;
+ ### Sep 10, 2026:
   - Complete Lesson 4 (Lab 01)
   - Finished exercise Ex01 -> Ex05
   - Topic:
     + If-else branching
     + Linear equation systems
 
- ### Sep 15, 2026;
+ ### Sep 15, 2026:
  - Building Lab 02 Week 1
  - Finished exercise Ex01 -> Ex06
  - Topic:
   + Basic input, output
 
- ### Sep 16, 2026;
+ ### Sep 16, 2026:
  - Building Lab 02 Week 1
  - Finished exercise Ex07 -> Ex9
  - Topic:
   + learning how to use ref, out
 
- ### Sep 17, 2026;
+ ### Sep 17, 2026:
  - Building Lab 02 - Week 1
  - Finished exercise Ex10 -> Ex15
  - Topic: 
@@ -63,6 +63,10 @@ This file records mu learning progress and completed exercises in C#
  - Building Week 2
  - Finished exercise Ex1 (1.1 -> 1.5)
   
-### Sep 23, 2026
+### Sep 23, 2026:
  - Building Week 2
  - Finished exercise Ex2 (2.1 -> 2.7)
+
+### Sep 24, 2026:
+ - Building Week 2
+ - Finished excercise Ex3 (3.1)
