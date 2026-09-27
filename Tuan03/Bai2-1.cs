@@ -17,7 +17,7 @@ class Program
     static void Bai2_1()
     {
         int[] NumArray = { 50, 42, 16, 3, 9, 8, 12, 7, 24, 0 };
-        Console.WriteLine("//Bài 2.1a - Các số chia hết cho cả 4 và 3:");
+        Console.WriteLine("Bài 2.1a - Các số chia hết cho cả 4 và 3:");
         //Query syntax
         var Query_kq =    from n in NumArray
                     where n % 4 == 0 && n % 3 == 0
@@ -41,5 +41,55 @@ class Program
             Console.Write($"{n} ");
         }
         Console.WriteLine();
+
+        //------------------------
+        Console.WriteLine("\nBài 2.1b - Các phần tử nhỏ hơn hoặc bằng 3:");
+
+        //Query Syntax
+        Query_kq =  from n in NumArray
+                    where n <= 3
+                    select n;
+        
+        Console.WriteLine("Query syntax:");
+        foreach (int n in Query_kq)
+        {
+            Console.Write($"{n} ");
+        }
+        Console.WriteLine();
+        
+        //Method Syntax
+        Method_kq = NumArray.Where(n => n <= 3);
+        Console.WriteLine("Method syntax:");
+        foreach (int n in Method_kq)
+        {
+            Console.Write($"{n} ");
+        }
+        Console.WriteLine();
+
+        //------------------------
+        Console.WriteLine("\nBài 2.1c - Tạo một dãy mới: số chẵn chia đôi, số lẻ giữ nguyên giá trị:");
+
+        //Query Syntax
+        Query_kq =  from n in NumArray
+                    select n % 2 == 0 ? n / 2 : n;
+        
+        Console.WriteLine("Query syntax:");
+        foreach (int n in Query_kq)
+        {
+            Console.Write($"{n} ");
+        }
+        Console.WriteLine();
+        
+        //Method Syntax
+        Method_kq = NumArray.Select(n => n % 2 == 0 ? n / 2 : n);
+
+        Console.WriteLine("Method syntax:");
+        foreach (int n in Method_kq)
+        {
+            Console.Write($"{n} ");
+        }
+        Console.WriteLine();
+
+        //------------------------
     }
 }
