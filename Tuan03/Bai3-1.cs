@@ -23,7 +23,8 @@ static void Bai3_1()
     int soGiaTriKhacNhau = mangSo.Distinct().Count();
 
     Console.WriteLine($"Số giá trị khác nhau: {soGiaTriKhacNhau}");
-
+    
+    //Query Syntax
     var nhomQuery = from n in mangSo
                     group n by n % 5;
 
@@ -39,7 +40,7 @@ static void Bai3_1()
 
         Console.WriteLine();
     }
-
+    //Method Syntax     
     var nhomMethod = mangSo.GroupBy(n => n % 5);
 
     Console.WriteLine("\nBài 3.1d - Method Syntax:");
