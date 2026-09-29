@@ -86,3 +86,10 @@ This file records mu learning progress and completed exercises in C#
  - Topic:
     + C# - practice OOP
     + LinQ - Query
+
+### Sep 29, 2026:
+ - Building Lab 03 LINQ
+ - Finished excercise 3.1, 3.2, 4, 5
+ - Topic:
+    + C# - OOP
+    + LinQ - Query
