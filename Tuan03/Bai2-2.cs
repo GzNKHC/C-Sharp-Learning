@@ -93,7 +93,7 @@ class Program
         }
         //------------------------
 
-        Console.WriteLine("\nBài 2.1d Liệt kê các từ “Thúy Kiều Thúy Vân” bằng cách chọn các phần tử bắt đầu bằng chữ in hoa:");
+        Console.WriteLine("\nBài 2.2d Liệt kê các từ “Thúy Kiều Thúy Vân” bằng cách chọn các phần tử bắt đầu bằng chữ in hoa:");
         //Query Syntax
         Query_kq =  from w in mangChuoi
                     where char.IsUpper(w[0])
