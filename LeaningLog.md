@@ -2,7 +2,7 @@
 
 Create date: Sep 7, 2026
 
-This file records mu learning progress and completed exercises in C#
+This file records learning progress and completed exercises in C#
 
 ---
 
@@ -74,22 +74,39 @@ This file records mu learning progress and completed exercises in C#
   + Learning and understand: Interface, IComparable<T>, <T>, delegate, event, virtual
 
 ### Sep 27, 2026:
- - Building Lab 03 LINQ
- - Finished excercise 2.1, 2.2
- - Topic:
-    + C# - practice OOP
-    + LinQ - Basic Query
+- Building Lab 03: LINQ
+- Finished exercises 2.1, 2.2
+- Topics:
+  + LINQ basics: Query Syntax and Method Syntax
+  + Lambda expressions
+  + Querying integer and string arrays
+  + Filtering and transforming data: Where, Select
+  + Sorting data: OrderBy
+  + String processing: Contains, ToLower, ToUpper, char.IsUpper
 
 ### Sep 28, 2026:
- - Building Lab 03 LINQ
- - Finished excercise 3.1, 3.2, 4, 5
- - Topic:
-    + C# - practice OOP
-    + LinQ - Query
+- Building Lab 03: LINQ
+- Finished exercises 3.1, 3.2, 4.1, 5.1, 5.2
+- Topics:
+  + C# OOP: classes, properties, and object collections
+  + Working with List<T>
+  + Aggregate operations: Count, Sum, Min, Max
+  + Finding distinct values: Distinct
+  + Grouping data: GroupBy
+  + Querying and transforming object collections
+  + Sorting by multiple criteria: OrderByDescending, ThenBy
+  + Anonymous types and statistics by group
 
 ### Sep 29, 2026:
- - Building Lab 03 LINQ
- - Finished excercise 3.1, 3.2, 4, 5
- - Topic:
-    + C# - OOP
-    + LinQ - Query
+- Building Lab 03: LINQ
+- Finished exercises 6.1, 6.2
+- Topics:
+  + Managing related object collections
+  + Joining data sources: Inner Join and Group Join
+  + Left Outer Join using DefaultIfEmpty
+  + Simulating Full Outer Join using Concat
+  + Finding unmatched records using Any
+  + Handling null values: ?. and ??
+  + Selecting top results: OrderByDescending, Take
+  + Finding the first matching element: FirstOrDefault
+  + Numbering elements using Select with an index
