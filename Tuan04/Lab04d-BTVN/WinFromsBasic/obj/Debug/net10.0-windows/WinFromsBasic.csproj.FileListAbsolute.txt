@@ -1,0 +1,34 @@
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.exe
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.deps.json
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.runtimeconfig.json
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.dll
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.pdb
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.frmDangKyKS.resources
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.csproj.GenerateResource.cache
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.AssemblyInfoInputs.cache
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.AssemblyInfo.cs
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.csproj.CoreCompileInputs.cache
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.dll
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\refint\WinFromsBasic.dll
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.pdb
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.genruntimeconfig.cache
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\ref\WinFromsBasic.dll
+C:\Users\ASUS ROG\source\repos\WinFromsBasic\WinFromsBasic\obj\Debug\net10.0-windows\WinFroms.B40F5386.Up2Date
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.exe
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.deps.json
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.runtimeconfig.json
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.dll
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\bin\Debug\net10.0-windows\WinFromsBasic.pdb
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.frmDangKyKS.resources
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.csproj.GenerateResource.cache
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.AssemblyInfoInputs.cache
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.AssemblyInfo.cs
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.csproj.CoreCompileInputs.cache
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.dll
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\refint\WinFromsBasic.dll
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.pdb
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFromsBasic.genruntimeconfig.cache
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\ref\WinFromsBasic.dll
+C:\Users\phuch\source\repos\Lab04d-BTVN\WinFromsBasic\obj\Debug\net10.0-windows\WinFroms.B40F5386.Up2Date

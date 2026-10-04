@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "WinFromsBasic/1.0.0": {
+        "runtime": {
+          "WinFromsBasic.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WinFromsBasic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
