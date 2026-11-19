@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lab04c-BTVN")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cae23ded2eb430b923632d7587b43ca9f35b995")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c64c198fdbe463a4bec3924d8a0fb2f4f19725dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lab04c-BTVN")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lab04c-BTVN")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
