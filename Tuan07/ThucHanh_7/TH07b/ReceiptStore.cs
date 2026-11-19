@@ -1,0 +1,78 @@
+using System;
+using System.Data;
+
+namespace ThucHanh7
+{
+    internal static class ReceiptStore
+    {
+        public static void SaveHeader(string code, string supplier, DateTime date, bool insert)
+        {
+            Db.InTransaction((connection, transaction) =>
+            {
+                if (!Db.Exists(connection, transaction, "SELECT 1 FROM dbo.NCC WHERE MaNCC = @ma",
+                    Db.Text("@ma", supplier)))
+                    throw new InvalidOperationException("Nhà cung cấp không tồn tại.");
+
+                if (insert && Db.Exists(connection, transaction,
+                    "SELECT 1 FROM dbo.PhieuNhap WHERE MaPhieuNhap = @ma", Db.Text("@ma", code)))
+                    throw new InvalidOperationException("Mã phiếu nhập đã tồn tại.");
+
+                string sql = insert
+                    ? @"INSERT dbo.PhieuNhap (MaPhieuNhap, MaNCC, NgayNhap, ThanhTien)
+                        VALUES (@ma, @ncc, @ngay, 0)"
+                    : @"UPDATE dbo.PhieuNhap SET MaNCC = @ncc, NgayNhap = @ngay WHERE MaPhieuNhap = @ma";
+                if (Db.Execute(connection, transaction, sql, Db.Text("@ma", code), Db.Text("@ncc", supplier),
+                    Db.Number("@ngay", SqlDbType.Date, date)) != 1)
+                    throw new InvalidOperationException("Phiếu nhập không còn tồn tại.");
+            });
+        }
+
+        public static void SaveLine(string receipt, string product, int quantity, bool replace, bool remove)
+        {
+            Db.InTransaction((connection, transaction) =>
+            {
+                // Khóa phiếu trong lúc thay đổi các dòng và tính lại tổng tiền.
+                if (!Db.Exists(connection, transaction,
+                    "SELECT 1 FROM dbo.PhieuNhap WITH (UPDLOCK, HOLDLOCK) WHERE MaPhieuNhap = @pn",
+                    Db.Text("@pn", receipt)))
+                    throw new InvalidOperationException("Phiếu nhập không còn tồn tại.");
+
+                const string key = " WHERE MaPhieuNhap = @pn AND MaSanPham = @sp";
+                var lineExists = Db.Exists(connection, transaction, "SELECT 1 FROM dbo.ChiTietPhieuNhap" + key,
+                    Db.Text("@pn", receipt), Db.Text("@sp", product));
+                int count;
+                if (remove)
+                {
+                    count = Db.Execute(connection, transaction, "DELETE dbo.ChiTietPhieuNhap" + key,
+                        Db.Text("@pn", receipt), Db.Text("@sp", product));
+                }
+                else if (lineExists)
+                {
+                    string amount = replace ? "@sl" : "SoLuong + @sl";
+                    count = Db.Execute(connection, transaction,
+                        "UPDATE dbo.ChiTietPhieuNhap SET SoLuong = " + amount + key,
+                        Db.Text("@pn", receipt), Db.Text("@sp", product), Db.Number("@sl", SqlDbType.Int, quantity));
+                }
+                else if (replace)
+                {
+                    throw new InvalidOperationException("Chi tiết này không còn tồn tại.");
+                }
+                else
+                {
+                    count = Db.Execute(connection, transaction, @"INSERT dbo.ChiTietPhieuNhap
+                        (MaPhieuNhap, MaSanPham, DonGia, SoLuong)
+                        SELECT @pn, MaSanPham, DonGia, @sl FROM dbo.SanPham WHERE MaSanPham = @sp",
+                        Db.Text("@pn", receipt), Db.Text("@sp", product), Db.Number("@sl", SqlDbType.Int, quantity));
+                }
+
+                if (count != 1)
+                    throw new InvalidOperationException("Sản phẩm hoặc chi tiết phiếu nhập không còn tồn tại.");
+
+                Db.Execute(connection, transaction, @"UPDATE dbo.PhieuNhap
+                    SET ThanhTien = COALESCE((SELECT SUM(DonGia * SoLuong) FROM dbo.ChiTietPhieuNhap
+                        WHERE MaPhieuNhap = @pn), 0)
+                    WHERE MaPhieuNhap = @pn", Db.Text("@pn", receipt));
+            });
+        }
+    }
+}
