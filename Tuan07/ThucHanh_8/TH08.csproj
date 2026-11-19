@@ -1,0 +1,145 @@
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
+
+namespace ThucHanh8
+{
+    internal sealed class StudentReportForm : Form
+    {
+        private readonly CrystalReportViewer viewer;
+        private readonly Button showReport;
+        private readonly Button saveTemplate;
+        private ReportDocument document;
+
+        public StudentReportForm(string caption, bool chooseClass, DataTable prepared = null)
+        {
+            Ui.SetWindow(this, caption, 1050, 690);
+            viewer = new CrystalReportViewer
+            {
+                Dock = DockStyle.Fill,
+                ShowRefreshButton = false,
+                ShowCloseButton = false,
+                DisplayStatusBar = true,
+                DisplayToolbar = true
+            };
+
+            var actions = Ui.Actions();
+            ComboBox classes = null;
+            if (chooseClass)
+            {
+                actions.Controls.Add(new Label { Text = "Tên lớp", AutoSize = true, Margin = new Padding(6, 10, 4, 0) });
+                classes = Ui.Combo();
+                classes.Width = 270;
+                classes.Margin = new Padding(4, 6, 8, 3);
+                actions.Controls.Add(classes);
+            }
+
+            if (prepared == null)
+            {
+                showReport = Ui.Button(actions, "Show Report", (sender, args) => Ui.Run(this, () =>
+                {
+                    string code = classes == null ? "" : Ui.Selected(classes);
+                    if (chooseClass && code.Length == 0)
+                        throw new InvalidOperationException("Hãy chọn một lớp để xem báo cáo.");
+
+                    using (DataTable rows = StudentReportData.ReadStudents(code))
+                        ShowReport(StudentReportData.ForReport(rows.Rows.Cast<DataRow>()));
+                }));
+                if (chooseClass)
+                {
+                    showReport.Enabled = false;
+                    classes.SelectedValueChanged += (sender, args) => showReport.Enabled = Ui.Selected(classes).Length > 0;
+                    Load += (sender, args) => Ui.Run(this, () =>
+                    {
+                        Ui.Bind(classes, StudentReportData.ReadClasses(), "MaLop", "TenLop");
+                        if (classes.Items.Count > 0)
+                            classes.SelectedIndex = 0;
+                    });
+                }
+            }
+            else
+            {
+                Load += (sender, args) => Ui.Run(this, () => ShowReport(prepared));
+            }
+
+            saveTemplate = Ui.Button(actions, "Lưu mẫu .rpt", (sender, args) => Ui.Run(this, SaveTemplate));
+            saveTemplate.Enabled = false;
+            Ui.Button(actions, "Đóng", (sender, args) => Close());
+
+            var layout = Ui.Layout(1);
+            layout.AutoSize = false;
+            layout.Dock = DockStyle.Fill;
+            layout.RowCount = 2;
+            layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            layout.Controls.Add(actions, 0, 0);
+            layout.Controls.Add(viewer, 0, 1);
+            Controls.Add(layout);
+        }
+
+        private void ShowReport(DataTable rows)
+        {
+            if (rows.Rows.Count == 0)
+            {
+                ClearReport();
+                MessageBox.Show(this, "Không có sinh viên trong danh sách đã chọn.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            ReportDocument next = StudentReportTemplate.Create(rows);
+            ClearReport();
+            try
+            {
+                viewer.ReportSource = next;
+                document = next;
+                saveTemplate.Enabled = true;
+            }
+            catch
+            {
+                next.Dispose();
+                throw;
+            }
+        }
+
+        private void SaveTemplate()
+        {
+            using (var dialog = new SaveFileDialog
+            {
+                Filter = "Crystal Reports (*.rpt)|*.rpt",
+                FileName = "MyReport.rpt",
+                AddExtension = true,
+                DefaultExt = "rpt",
+                OverwritePrompt = true
+            })
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    StudentReportTemplate.Save(document, dialog.FileName);
+                    MessageBox.Show(this, "Đã lưu mẫu Crystal Reports.", "Thông báo");
+                }
+        }
+
+        private void ClearReport()
+        {
+            if (!viewer.IsDisposed)
+                viewer.ReportSource = null;
+            saveTemplate.Enabled = false;
+            if (document != null)
+            {
+                document.Close();
+                document.Dispose();
+                document = null;
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                ClearReport();
+            base.Dispose(disposing);
+        }
+    }
+}

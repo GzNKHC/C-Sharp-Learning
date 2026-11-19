@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+    <add name="ThucHanh8" providerName="System.Data.SqlClient"
+         connectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QLSinhVien_ThucHanh7;Integrated Security=True" />
+  </connectionStrings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+  </startup>
+</configuration>
