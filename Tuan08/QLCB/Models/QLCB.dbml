@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLCB" Class="QLCBDataContext">
+  <Table Name="dbo.PHONGBAN" Member="PhongBanRows">
+    <Type Name="PhongBan">
+      <Column Name="Maphong" Member="Maphong" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Tenphong" Member="Tenphong" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Vitri" Member="Vitri" Type="System.String" DbType="nvarchar(80) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_LUONG_maphong" Member="LuongBymaphong" ThisKey="Maphong" OtherKey="maphong" Type="Luong"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.NGACH" Member="NgachRows">
+    <Type Name="Ngach">
+      <Column Name="MaNg" Member="MaNg" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenNg" Member="TenNg" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_HOSO_MaNg" Member="HoSoByMaNg" ThisKey="MaNg" OtherKey="MaNg" Type="HoSo"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.CHVU" Member="ChucVuRows">
+    <Type Name="ChucVu">
+      <Column Name="MaCV" Member="MaCV" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenCV" Member="TenCV" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Hesophucap" Member="Hesophucap" Type="System.Decimal" DbType="decimal(8,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_HOSO_MaCV" Member="HoSoByMaCV" ThisKey="MaCV" OtherKey="MaCV" Type="HoSo"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.HOSO" Member="HoSoRows">
+    <Type Name="HoSo">
+      <Column Name="manv" Member="manv" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Gioitinh" Member="Gioitinh" Type="System.String" DbType="nvarchar(8) NOT NULL" CanBeNull="false"/>
+      <Column Name="Ngaysinh" Member="Ngaysinh" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="Diachi" Member="Diachi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="Ngayvn" Member="Ngayvn" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="MaNg" Member="MaNg" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaCV" Member="MaCV" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_HOSO_MaNg" Member="RefMaNg" ThisKey="MaNg" OtherKey="MaNg" Type="Ngach" IsForeignKey="true"/>
+      <Association Name="FK_HOSO_MaCV" Member="RefMaCV" ThisKey="MaCV" OtherKey="MaCV" Type="ChucVu" IsForeignKey="true"/>
+      <Association Name="FK_LUONG_manv" Member="LuongBymanv" ThisKey="manv" OtherKey="manv" Type="Luong"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.LUONG" Member="LuongRows">
+    <Type Name="Luong">
+      <Column Name="manv" Member="manv" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="maphong" Member="maphong" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="Hesoluong" Member="Hesoluong" Type="System.Decimal" DbType="decimal(8,2) NOT NULL" CanBeNull="false"/>
+      <Column Name="ngayLL" Member="ngayLL" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_LUONG_manv" Member="Refmanv" ThisKey="manv" OtherKey="manv" Type="HoSo" IsForeignKey="true"/>
+      <Association Name="FK_LUONG_maphong" Member="Refmaphong" ThisKey="maphong" OtherKey="Maphong" Type="PhongBan" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

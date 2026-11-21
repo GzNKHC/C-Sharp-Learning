@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLBH.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLBHStore">
+    <EntitySet Name="MatHang" EntityType="QLBH.Store.MatHang" Schema="dbo" Table="MatHang"/>
+    <EntitySet Name="DaiLy" EntityType="QLBH.Store.DaiLy" Schema="dbo" Table="DaiLy"/>
+    <EntitySet Name="DonHang" EntityType="QLBH.Store.DonHang" Schema="dbo" Table="DonHang"/>
+    <EntitySet Name="ChiTietDonHang" EntityType="QLBH.Store.ChiTietDonHang" Schema="dbo" Table="ChiTietDonHang"/>
+    <AssociationSet Name="FK_DonHang_MaDaiLy" Association="QLBH.Store.FK_DonHang_MaDaiLy">
+      <End Role="PrincipalRole" EntitySet="DaiLy"/>
+      <End Role="DependentRole" EntitySet="DonHang"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonHang_MaDonHang" Association="QLBH.Store.FK_ChiTietDonHang_MaDonHang">
+      <End Role="PrincipalRole" EntitySet="DonHang"/>
+      <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonHang_MaMatHang" Association="QLBH.Store.FK_ChiTietDonHang_MaMatHang">
+      <End Role="PrincipalRole" EntitySet="MatHang"/>
+      <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MatHang">
+    <Key>
+      <PropertyRef Name="MaMatHang"/>
+    </Key>
+    <Property Name="MaMatHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenMatHang" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="XuatXu" Nullable="false" Type="nvarchar" MaxLength="60"/>
+    <Property Name="DonViTinh" Nullable="false" Type="nvarchar" MaxLength="30"/>
+  </EntityType>
+  <EntityType Name="DaiLy">
+    <Key>
+      <PropertyRef Name="MaDaiLy"/>
+    </Key>
+    <Property Name="MaDaiLy" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenDaiLy" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="DiaChi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+    <Property Name="SoDienThoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang"/>
+    </Key>
+    <Property Name="MaDonHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="MaDaiLy" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="NguoiLap" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="NgayLap" Nullable="false" Type="date"/>
+    <Property Name="NgayNhanHang" Nullable="false" Type="date"/>
+  </EntityType>
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang"/>
+      <PropertyRef Name="MaMatHang"/>
+    </Key>
+    <Property Name="MaDonHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="MaMatHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+    <Property Name="Gia" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+  </EntityType>
+  <Association Name="FK_DonHang_MaDaiLy">
+    <End Role="PrincipalRole" Type="QLBH.Store.DaiLy" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLBH.Store.DonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaDaiLy"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaDaiLy"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDonHang_MaDonHang">
+    <End Role="PrincipalRole" Type="QLBH.Store.DonHang" Multiplicity="1">
+      <OnDelete Action="Cascade"/>
+    </End>
+    <End Role="DependentRole" Type="QLBH.Store.ChiTietDonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaDonHang"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaDonHang"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDonHang_MaMatHang">
+    <End Role="PrincipalRole" Type="QLBH.Store.MatHang" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLBH.Store.ChiTietDonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaMatHang"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaMatHang"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

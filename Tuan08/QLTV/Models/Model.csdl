@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLTVEntities">
+    <EntitySet Name="Sach" EntityType="ThucHanh9.Models.Sach"/>
+    <EntitySet Name="DocGia" EntityType="ThucHanh9.Models.DocGia"/>
+    <EntitySet Name="PhieuMuon" EntityType="ThucHanh9.Models.PhieuMuon"/>
+    <EntitySet Name="ChiTietPhieuMuon" EntityType="ThucHanh9.Models.ChiTietPhieuMuon"/>
+    <AssociationSet Name="FK_PhieuMuonSach_MaDocGia" Association="ThucHanh9.Models.FK_PhieuMuonSach_MaDocGia">
+      <End Role="PrincipalRole" EntitySet="DocGia"/>
+      <End Role="DependentRole" EntitySet="PhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuMuon_SoPhieu" Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_SoPhieu">
+      <End Role="PrincipalRole" EntitySet="PhieuMuon"/>
+      <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuMuon_MaSach" Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_MaSach">
+      <End Role="PrincipalRole" EntitySet="Sach"/>
+      <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="MaSach"/>
+    </Key>
+    <Property Name="MaSach" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenSach" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="TacGia" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="NhaXuatBan" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="NamXB" Nullable="false" Type="Int32"/>
+  </EntityType>
+  <EntityType Name="DocGia">
+    <Key>
+      <PropertyRef Name="MaDocGia"/>
+    </Key>
+    <Property Name="MaDocGia" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="HoTen" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="DiaChi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+    <Property Name="SoDienThoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="PhieuMuon">
+    <Key>
+      <PropertyRef Name="SoPhieu"/>
+    </Key>
+    <Property Name="SoPhieu" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaDocGia" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="HoTenNhanVien" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="NgayMuon" Nullable="false" Type="DateTime"/>
+  </EntityType>
+  <EntityType Name="ChiTietPhieuMuon">
+    <Key>
+      <PropertyRef Name="SoPhieu"/>
+      <PropertyRef Name="MaSach"/>
+    </Key>
+    <Property Name="SoPhieu" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaSach" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="NgayHenTra" Nullable="false" Type="DateTime"/>
+    <Property Name="NgayTra" Nullable="true" Type="DateTime"/>
+  </EntityType>
+  <Association Name="FK_PhieuMuonSach_MaDocGia">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.DocGia" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaDocGia"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaDocGia"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuMuon_SoPhieu">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="SoPhieu"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="SoPhieu"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuMuon_MaSach">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.Sach" Multiplicity="1">
+      <OnDelete Action="Cascade"/>
+    </End>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaSach"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaSach"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

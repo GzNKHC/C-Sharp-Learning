@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLGV" Class="QLGVDataContext">
+  <Table Name="dbo.COSO" Member="CoSoRows">
+    <Type Name="CoSo">
+      <Column Name="Macoso" Member="Macoso" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Tencoso" Member="Tencoso" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DONVI_Macoso" Member="DonViByMacoso" ThisKey="Macoso" OtherKey="Macoso" Type="DonVi"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DONVI" Member="DonViRows">
+    <Type Name="DonVi">
+      <Column Name="Madonvi" Member="Madonvi" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Tendonvi" Member="Tendonvi" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Macoso" Member="Macoso" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DONVI_Macoso" Member="RefMacoso" ThisKey="Macoso" OtherKey="Macoso" Type="CoSo" IsForeignKey="true"/>
+      <Association Name="FK_GV_Madonvi" Member="GiaoVienByMadonvi" ThisKey="Madonvi" OtherKey="Madonvi" Type="GiaoVien"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.GV" Member="GiaoVienRows">
+    <Type Name="GiaoVien">
+      <Column Name="Magv" Member="Magv" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Sdt" Member="Sdt" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="Ghichu" Member="Ghichu" Type="System.String" DbType="nvarchar(255)" CanBeNull="true"/>
+      <Column Name="Madonvi" Member="Madonvi" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_GV_Madonvi" Member="RefMadonvi" ThisKey="Madonvi" OtherKey="Madonvi" Type="DonVi" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

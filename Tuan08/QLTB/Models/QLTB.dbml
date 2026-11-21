@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLTB" Class="QLTBDataContext">
+  <Table Name="dbo.tblPhong" Member="PhongRows">
+    <Type Name="Phong">
+      <Column Name="MaPhong" Member="MaPhong" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenPhong" Member="TenPhong" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblNhanVien_MaPhong" Member="NhanVienByMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="NhanVien"/>
+      <Association Name="FK_tblPhieuMuon_MaPhong" Member="PhieuMuonByMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="PhieuMuon"/>
+      <Association Name="FK_tblPhieuTra_MaPhong" Member="PhieuTraByMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="PhieuTra"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblNhanVien" Member="NhanVienRows">
+    <Type Name="NhanVien">
+      <Column Name="MaNV" Member="MaNV" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenNV" Member="TenNV" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="ChucVu" Member="ChucVu" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaPhong" Member="MaPhong" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblNhanVien_MaPhong" Member="RefMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="Phong" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuNhap_MaNV" Member="PhieuNhapByMaNV" ThisKey="MaNV" OtherKey="MaNV" Type="PhieuNhap"/>
+      <Association Name="FK_tblPhieuMuon_NVLapPhieu" Member="PhieuMuonByNVLapPhieu" ThisKey="MaNV" OtherKey="NVLapPhieu" Type="PhieuMuon"/>
+      <Association Name="FK_tblPhieuMuon_NVMuon" Member="PhieuMuonByNVMuon" ThisKey="MaNV" OtherKey="NVMuon" Type="PhieuMuon"/>
+      <Association Name="FK_tblPhieuTra_NVTra" Member="PhieuTraByNVTra" ThisKey="MaNV" OtherKey="NVTra" Type="PhieuTra"/>
+      <Association Name="FK_tblPhieuTra_NVNhan" Member="PhieuTraByNVNhan" ThisKey="MaNV" OtherKey="NVNhan" Type="PhieuTra"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblThietBi" Member="ThietBiRows">
+    <Type Name="ThietBi">
+      <Column Name="MaTB" Member="MaTB" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenTB" Member="TenTB" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="TinhTrang" Member="TinhTrang" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="GhiChu" Member="GhiChu" Type="System.String" DbType="nvarchar(255)" CanBeNull="true"/>
+      <Column Name="SoLuongHong" Member="SoLuongHong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieuNhap_MaTB" Member="PhieuNhapByMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="PhieuNhap"/>
+      <Association Name="FK_tblPhieuMuon_MaTB" Member="PhieuMuonByMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="PhieuMuon"/>
+      <Association Name="FK_tblPhieuTra_MaTB" Member="PhieuTraByMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="PhieuTra"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPhieuNhap" Member="PhieuNhapRows">
+    <Type Name="PhieuNhap">
+      <Column Name="MaPN" Member="MaPN" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaNV" Member="MaNV" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaTB" Member="MaTB" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayNhap" Member="NgayNhap" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="TinhTrang" Member="TinhTrang" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieuNhap_MaNV" Member="RefMaNV" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuNhap_MaTB" Member="RefMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="ThietBi" IsForeignKey="true"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPhieuMuon" Member="PhieuMuonRows">
+    <Type Name="PhieuMuon">
+      <Column Name="MaPM" Member="MaPM" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="NVLapPhieu" Member="NVLapPhieu" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaTB" Member="MaTB" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="TinhTrang" Member="TinhTrang" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayMuon" Member="NgayMuon" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="NVMuon" Member="NVMuon" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="MaPhong" Member="MaPhong" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieuMuon_NVLapPhieu" Member="RefNVLapPhieu" ThisKey="NVLapPhieu" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuMuon_MaTB" Member="RefMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="ThietBi" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuMuon_NVMuon" Member="RefNVMuon" ThisKey="NVMuon" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuMuon_MaPhong" Member="RefMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="Phong" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuTra_MaPM" Member="PhieuTraByMaPM" ThisKey="MaPM" OtherKey="MaPM" Type="PhieuTra"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPhieuTra" Member="PhieuTraRows">
+    <Type Name="PhieuTra">
+      <Column Name="MaPT" Member="MaPT" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaPM" Member="MaPM" Type="System.String" DbType="nvarchar(12)" CanBeNull="true"/>
+      <Column Name="MaTB" Member="MaTB" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="NVTra" Member="NVTra" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="NVNhan" Member="NVNhan" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayTra" Member="NgayTra" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="TinhTrang" Member="TinhTrang" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaPhong" Member="MaPhong" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoPhieuMuonGoc" Member="SoPhieuMuonGoc" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieuTra_MaPM" Member="RefMaPM" ThisKey="MaPM" OtherKey="MaPM" Type="PhieuMuon" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuTra_MaTB" Member="RefMaTB" ThisKey="MaTB" OtherKey="MaTB" Type="ThietBi" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuTra_NVTra" Member="RefNVTra" ThisKey="NVTra" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuTra_NVNhan" Member="RefNVNhan" ThisKey="NVNhan" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieuTra_MaPhong" Member="RefMaPhong" ThisKey="MaPhong" OtherKey="MaPhong" Type="Phong" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

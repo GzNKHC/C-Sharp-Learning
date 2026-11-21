@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLVDVStore" CdmEntityContainer="QLVDVEntities">
+    <EntitySetMapping Name="ThanhVien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ThanhVien">
+        <MappingFragment StoreEntitySet="tblThanhvien">
+          <ScalarProperty Name="MaThanhvien" ColumnName="MaThanhvien"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh"/>
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh"/>
+          <ScalarProperty Name="Donvi" ColumnName="Donvi"/>
+          <ScalarProperty Name="Sothich" ColumnName="Sothich"/>
+          <ScalarProperty Name="Diachi" ColumnName="Diachi"/>
+          <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai"/>
+          <ScalarProperty Name="Quyenhan" ColumnName="Quyenhan"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoatDong">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.HoatDong">
+        <MappingFragment StoreEntitySet="tblHoatdong">
+          <ScalarProperty Name="Mahoatdong" ColumnName="Mahoatdong"/>
+          <ScalarProperty Name="Tenhoatdong" ColumnName="Tenhoatdong"/>
+          <ScalarProperty Name="Noidung" ColumnName="Noidung"/>
+          <ScalarProperty Name="Thoigian" ColumnName="Thoigian"/>
+          <ScalarProperty Name="Kinhphi" ColumnName="Kinhphi"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phieu">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Phieu">
+        <MappingFragment StoreEntitySet="tblPhieu">
+          <ScalarProperty Name="Mahoatdong" ColumnName="Mahoatdong"/>
+          <ScalarProperty Name="Mathanhvien" ColumnName="Mathanhvien"/>
+          <ScalarProperty Name="ThoigianBD" ColumnName="ThoigianBD"/>
+          <ScalarProperty Name="ThoigianKT" ColumnName="ThoigianKT"/>
+          <ScalarProperty Name="Danhgia" ColumnName="Danhgia"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

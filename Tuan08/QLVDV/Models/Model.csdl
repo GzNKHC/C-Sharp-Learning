@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLVDVEntities">
+    <EntitySet Name="ThanhVien" EntityType="ThucHanh9.Models.ThanhVien"/>
+    <EntitySet Name="HoatDong" EntityType="ThucHanh9.Models.HoatDong"/>
+    <EntitySet Name="Phieu" EntityType="ThucHanh9.Models.Phieu"/>
+    <AssociationSet Name="FK_tblPhieu_Mahoatdong" Association="ThucHanh9.Models.FK_tblPhieu_Mahoatdong">
+      <End Role="PrincipalRole" EntitySet="HoatDong"/>
+      <End Role="DependentRole" EntitySet="Phieu"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieu_Mathanhvien" Association="ThucHanh9.Models.FK_tblPhieu_Mathanhvien">
+      <End Role="PrincipalRole" EntitySet="ThanhVien"/>
+      <End Role="DependentRole" EntitySet="Phieu"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ThanhVien">
+    <Key>
+      <PropertyRef Name="MaThanhvien"/>
+    </Key>
+    <Property Name="MaThanhvien" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Ngaysinh" Nullable="false" Type="DateTime"/>
+    <Property Name="Gioitinh" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+    <Property Name="Donvi" Nullable="false" Type="String" MaxLength="60" Unicode="true" FixedLength="false"/>
+    <Property Name="Sothich" Nullable="true" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Diachi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+    <Property Name="Dienthoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Quyenhan" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="HoatDong">
+    <Key>
+      <PropertyRef Name="Mahoatdong"/>
+    </Key>
+    <Property Name="Mahoatdong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Tenhoatdong" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Noidung" Nullable="false" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+    <Property Name="Thoigian" Nullable="false" Type="DateTime" Precision="0"/>
+    <Property Name="Kinhphi" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+  </EntityType>
+  <EntityType Name="Phieu">
+    <Key>
+      <PropertyRef Name="Mahoatdong"/>
+      <PropertyRef Name="Mathanhvien"/>
+      <PropertyRef Name="ThoigianBD"/>
+    </Key>
+    <Property Name="Mahoatdong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Mathanhvien" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="ThoigianBD" Nullable="false" Type="DateTime" Precision="0"/>
+    <Property Name="ThoigianKT" Nullable="false" Type="DateTime" Precision="0"/>
+    <Property Name="Danhgia" Nullable="true" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <Association Name="FK_tblPhieu_Mahoatdong">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.HoatDong" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Phieu" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Mahoatdong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Mahoatdong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieu_Mathanhvien">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.ThanhVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Phieu" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaThanhvien"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Mathanhvien"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

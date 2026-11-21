@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLVDV" Class="QLVDVDataContext">
+  <Table Name="dbo.tblThanhvien" Member="ThanhVienRows">
+    <Type Name="ThanhVien">
+      <Column Name="MaThanhvien" Member="MaThanhvien" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Ngaysinh" Member="Ngaysinh" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="Gioitinh" Member="Gioitinh" Type="System.String" DbType="nvarchar(8) NOT NULL" CanBeNull="false"/>
+      <Column Name="Donvi" Member="Donvi" Type="System.String" DbType="nvarchar(60) NOT NULL" CanBeNull="false"/>
+      <Column Name="Sothich" Member="Sothich" Type="System.String" DbType="nvarchar(100)" CanBeNull="true"/>
+      <Column Name="Diachi" Member="Diachi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="Dienthoai" Member="Dienthoai" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="Quyenhan" Member="Quyenhan" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieu_Mathanhvien" Member="PhieuByMathanhvien" ThisKey="MaThanhvien" OtherKey="Mathanhvien" Type="Phieu"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblHoatdong" Member="HoatDongRows">
+    <Type Name="HoatDong">
+      <Column Name="Mahoatdong" Member="Mahoatdong" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Tenhoatdong" Member="Tenhoatdong" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Noidung" Member="Noidung" Type="System.String" DbType="nvarchar(255) NOT NULL" CanBeNull="false"/>
+      <Column Name="Thoigian" Member="Thoigian" Type="System.DateTime" DbType="datetime2(0) NOT NULL" CanBeNull="false"/>
+      <Column Name="Kinhphi" Member="Kinhphi" Type="System.Decimal" DbType="decimal(16,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblPhieu_Mahoatdong" Member="PhieuByMahoatdong" ThisKey="Mahoatdong" OtherKey="Mahoatdong" Type="Phieu"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPhieu" Member="PhieuRows">
+    <Type Name="Phieu">
+      <Column Name="Mahoatdong" Member="Mahoatdong" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Mathanhvien" Member="Mathanhvien" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="ThoigianBD" Member="ThoigianBD" Type="System.DateTime" DbType="datetime2(0) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="ThoigianKT" Member="ThoigianKT" Type="System.DateTime" DbType="datetime2(0) NOT NULL" CanBeNull="false"/>
+      <Column Name="Danhgia" Member="Danhgia" Type="System.String" DbType="nvarchar(150)" CanBeNull="true"/>
+      <Association Name="FK_tblPhieu_Mahoatdong" Member="RefMahoatdong" ThisKey="Mahoatdong" OtherKey="Mahoatdong" Type="HoatDong" IsForeignKey="true"/>
+      <Association Name="FK_tblPhieu_Mathanhvien" Member="RefMathanhvien" ThisKey="Mathanhvien" OtherKey="MaThanhvien" Type="ThanhVien" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

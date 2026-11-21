@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLKH.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLKHStore">
+          <EntitySet Name="HANGSX" EntityType="QLKH.Store.HANGSX" Schema="dbo" Table="HANGSX"/>
+          <EntitySet Name="DIENTHOAI" EntityType="QLKH.Store.DIENTHOAI" Schema="dbo" Table="DIENTHOAI"/>
+          <AssociationSet Name="FK_DIENTHOAI_mahang" Association="QLKH.Store.FK_DIENTHOAI_mahang">
+            <End Role="PrincipalRole" EntitySet="HANGSX"/>
+            <End Role="DependentRole" EntitySet="DIENTHOAI"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HANGSX">
+          <Key>
+            <PropertyRef Name="mahang"/>
+          </Key>
+          <Property Name="mahang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="tenhang" Nullable="false" Type="nvarchar" MaxLength="100"/>
+        </EntityType>
+        <EntityType Name="DIENTHOAI">
+          <Key>
+            <PropertyRef Name="ma"/>
+          </Key>
+          <Property Name="ma" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="ten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="dongia" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+          <Property Name="tonkho" Nullable="false" Type="int"/>
+          <Property Name="mahang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <Association Name="FK_DIENTHOAI_mahang">
+          <End Role="PrincipalRole" Type="QLKH.Store.HANGSX" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLKH.Store.DIENTHOAI" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="mahang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="mahang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLKHEntities">
+          <EntitySet Name="Hang" EntityType="ThucHanh9.Models.Hang"/>
+          <EntitySet Name="DienThoai" EntityType="ThucHanh9.Models.DienThoai"/>
+          <AssociationSet Name="FK_DIENTHOAI_mahang" Association="ThucHanh9.Models.FK_DIENTHOAI_mahang">
+            <End Role="PrincipalRole" EntitySet="Hang"/>
+            <End Role="DependentRole" EntitySet="DienThoai"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hang">
+          <Key>
+            <PropertyRef Name="mahang"/>
+          </Key>
+          <Property Name="mahang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="tenhang" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="DienThoai">
+          <Key>
+            <PropertyRef Name="ma"/>
+          </Key>
+          <Property Name="ma" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="ten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="dongia" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+          <Property Name="tonkho" Nullable="false" Type="Int32"/>
+          <Property Name="mahang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_DIENTHOAI_mahang">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Hang" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.DienThoai" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="mahang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="mahang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLKHStore" CdmEntityContainer="QLKHEntities">
+          <EntitySetMapping Name="Hang">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Hang">
+              <MappingFragment StoreEntitySet="HANGSX">
+                <ScalarProperty Name="mahang" ColumnName="mahang"/>
+                <ScalarProperty Name="tenhang" ColumnName="tenhang"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DienThoai">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.DienThoai">
+              <MappingFragment StoreEntitySet="DIENTHOAI">
+                <ScalarProperty Name="ma" ColumnName="ma"/>
+                <ScalarProperty Name="ten" ColumnName="ten"/>
+                <ScalarProperty Name="dongia" ColumnName="dongia"/>
+                <ScalarProperty Name="tonkho" ColumnName="tonkho"/>
+                <ScalarProperty Name="mahang" ColumnName="mahang"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="99234ab4-1f46-5cb6-ab38-2fc56ef6de5f" Name="QLKH" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Hang" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.DienThoai" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_DIENTHOAI_mahang"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

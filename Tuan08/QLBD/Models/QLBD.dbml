@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLBD" Class="QLBDDataContext">
+  <Table Name="dbo.BD" Member="BangDiaRows">
+    <Type Name="BangDia">
+      <Column Name="MaBD" Member="MaBD" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Tenbangdia" Member="Tenbangdia" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Soluong" Member="Soluong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_THUE_MaBD" Member="ThueByMaBD" ThisKey="MaBD" OtherKey="MaBD" Type="Thue"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.KH" Member="KhachHangRows">
+    <Type Name="KhachHang">
+      <Column Name="MaKH" Member="MaKH" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Dienthoai" Member="Dienthoai" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_THUE_MaKH" Member="ThueByMaKH" ThisKey="MaKH" OtherKey="MaKH" Type="Thue"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.THUE" Member="ThueRows">
+    <Type Name="Thue">
+      <Column Name="MaThue" Member="MaThue" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaKH" Member="MaKH" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaBD" Member="MaBD" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="Soluongthue" Member="Soluongthue" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="Ngaythue" Member="Ngaythue" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="Songaythue" Member="Songaythue" Type="System.Int32" DbType="int" CanBeNull="true"/>
+      <Column Name="ThanhTien" Member="ThanhTien" Type="System.Decimal" DbType="decimal(16,2)" CanBeNull="true"/>
+      <Column Name="NgayThanhToan" Member="NgayThanhToan" Type="System.DateTime" DbType="date" CanBeNull="true"/>
+      <Association Name="FK_THUE_MaKH" Member="RefMaKH" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" IsForeignKey="true"/>
+      <Association Name="FK_THUE_MaBD" Member="RefMaBD" ThisKey="MaBD" OtherKey="MaBD" Type="BangDia" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLTXStore" CdmEntityContainer="QLTXEntities">
+    <EntitySetMapping Name="Xe">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Xe">
+        <MappingFragment StoreEntitySet="tblXe">
+          <ScalarProperty Name="Maxe" ColumnName="Maxe"/>
+          <ScalarProperty Name="Sokhung" ColumnName="Sokhung"/>
+          <ScalarProperty Name="Somay" ColumnName="Somay"/>
+          <ScalarProperty Name="HangSX" ColumnName="HangSX"/>
+          <ScalarProperty Name="NamSX" ColumnName="NamSX"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.KhachHang">
+        <MappingFragment StoreEntitySet="tblKH">
+          <ScalarProperty Name="MaK" ColumnName="MaK"/>
+          <ScalarProperty Name="TenK" ColumnName="TenK"/>
+          <ScalarProperty Name="Coquan" ColumnName="Coquan"/>
+          <ScalarProperty Name="Diachi" ColumnName="Diachi"/>
+          <ScalarProperty Name="Tel" ColumnName="Tel"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YeuCau">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.YeuCau">
+        <MappingFragment StoreEntitySet="tblYeuCau">
+          <ScalarProperty Name="Maxe" ColumnName="Maxe"/>
+          <ScalarProperty Name="MaK" ColumnName="MaK"/>
+          <ScalarProperty Name="Ngaymuon" ColumnName="Ngaymuon"/>
+          <ScalarProperty Name="Ngaytra" ColumnName="Ngaytra"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

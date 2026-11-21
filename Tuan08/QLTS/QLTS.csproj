@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A886D2F-7960-51A1-8065-D37E86E2FE15}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ThucHanh9</RootNamespace>
+    <AssemblyName>QLTS</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>7.3</LangVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Models\Entities.cs" />
+    <Compile Include="..\DungChung\*.cs" Exclude="..\DungChung\OrderForms.cs">
+      <Link>DungChung\%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\DungChung\OrderForms.cs" Condition="'$(AssemblyName)' == 'QLBT' Or '$(AssemblyName)' == 'QLBH'">
+      <Link>DungChung\OrderForms.cs</Link>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Setup.sql" />
+    <None Include="Models\QLTS.dbml" />
+    <None Include="Models\Model.edmx" />
+    <Content Include="Models\Model.csdl;Models\Model.ssdl;Models\Model.msl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

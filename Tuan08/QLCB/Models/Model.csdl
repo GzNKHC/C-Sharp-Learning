@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLCBEntities">
+    <EntitySet Name="PhongBan" EntityType="ThucHanh9.Models.PhongBan"/>
+    <EntitySet Name="Ngach" EntityType="ThucHanh9.Models.Ngach"/>
+    <EntitySet Name="ChucVu" EntityType="ThucHanh9.Models.ChucVu"/>
+    <EntitySet Name="HoSo" EntityType="ThucHanh9.Models.HoSo"/>
+    <EntitySet Name="Luong" EntityType="ThucHanh9.Models.Luong"/>
+    <AssociationSet Name="FK_HOSO_MaNg" Association="ThucHanh9.Models.FK_HOSO_MaNg">
+      <End Role="PrincipalRole" EntitySet="Ngach"/>
+      <End Role="DependentRole" EntitySet="HoSo"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_HOSO_MaCV" Association="ThucHanh9.Models.FK_HOSO_MaCV">
+      <End Role="PrincipalRole" EntitySet="ChucVu"/>
+      <End Role="DependentRole" EntitySet="HoSo"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_LUONG_manv" Association="ThucHanh9.Models.FK_LUONG_manv">
+      <End Role="PrincipalRole" EntitySet="HoSo"/>
+      <End Role="DependentRole" EntitySet="Luong"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_LUONG_maphong" Association="ThucHanh9.Models.FK_LUONG_maphong">
+      <End Role="PrincipalRole" EntitySet="PhongBan"/>
+      <End Role="DependentRole" EntitySet="Luong"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PhongBan">
+    <Key>
+      <PropertyRef Name="Maphong"/>
+    </Key>
+    <Property Name="Maphong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Tenphong" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Vitri" Nullable="false" Type="String" MaxLength="80" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="Ngach">
+    <Key>
+      <PropertyRef Name="MaNg"/>
+    </Key>
+    <Property Name="MaNg" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenNg" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="ChucVu">
+    <Key>
+      <PropertyRef Name="MaCV"/>
+    </Key>
+    <Property Name="MaCV" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenCV" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Hesophucap" Nullable="false" Type="Decimal" Precision="8" Scale="2"/>
+  </EntityType>
+  <EntityType Name="HoSo">
+    <Key>
+      <PropertyRef Name="manv"/>
+    </Key>
+    <Property Name="manv" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Gioitinh" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+    <Property Name="Ngaysinh" Nullable="false" Type="DateTime"/>
+    <Property Name="Diachi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+    <Property Name="Ngayvn" Nullable="false" Type="DateTime"/>
+    <Property Name="MaNg" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaCV" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="Luong">
+    <Key>
+      <PropertyRef Name="manv"/>
+    </Key>
+    <Property Name="manv" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="maphong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hesoluong" Nullable="false" Type="Decimal" Precision="8" Scale="2"/>
+    <Property Name="ngayLL" Nullable="false" Type="DateTime"/>
+  </EntityType>
+  <Association Name="FK_HOSO_MaNg">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.Ngach" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.HoSo" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNg"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaNg"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOSO_MaCV">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.ChucVu" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.HoSo" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaCV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaCV"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUONG_manv">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.HoSo" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Luong" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="manv"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="manv"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUONG_maphong">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.PhongBan" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Luong" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Maphong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="maphong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

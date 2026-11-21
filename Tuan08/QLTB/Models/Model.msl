@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLTBStore" CdmEntityContainer="QLTBEntities">
+    <EntitySetMapping Name="Phong">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Phong">
+        <MappingFragment StoreEntitySet="tblPhong">
+          <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+          <ScalarProperty Name="TenPhong" ColumnName="TenPhong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanVien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.NhanVien">
+        <MappingFragment StoreEntitySet="tblNhanVien">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV"/>
+          <ScalarProperty Name="TenNV" ColumnName="TenNV"/>
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu"/>
+          <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThietBi">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ThietBi">
+        <MappingFragment StoreEntitySet="tblThietBi">
+          <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+          <ScalarProperty Name="TenTB" ColumnName="TenTB"/>
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu"/>
+          <ScalarProperty Name="SoLuongHong" ColumnName="SoLuongHong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuNhap">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuNhap">
+        <MappingFragment StoreEntitySet="tblPhieuNhap">
+          <ScalarProperty Name="MaPN" ColumnName="MaPN"/>
+          <ScalarProperty Name="MaNV" ColumnName="MaNV"/>
+          <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuMuon">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuMuon">
+        <MappingFragment StoreEntitySet="tblPhieuMuon">
+          <ScalarProperty Name="MaPM" ColumnName="MaPM"/>
+          <ScalarProperty Name="NVLapPhieu" ColumnName="NVLapPhieu"/>
+          <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+          <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon"/>
+          <ScalarProperty Name="NVMuon" ColumnName="NVMuon"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+          <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuTra">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuTra">
+        <MappingFragment StoreEntitySet="tblPhieuTra">
+          <ScalarProperty Name="MaPT" ColumnName="MaPT"/>
+          <ScalarProperty Name="MaPM" ColumnName="MaPM"/>
+          <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+          <ScalarProperty Name="NVTra" ColumnName="NVTra"/>
+          <ScalarProperty Name="NVNhan" ColumnName="NVNhan"/>
+          <ScalarProperty Name="NgayTra" ColumnName="NgayTra"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+          <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+          <ScalarProperty Name="SoPhieuMuonGoc" ColumnName="SoPhieuMuonGoc"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

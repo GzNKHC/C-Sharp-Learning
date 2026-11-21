@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLTX" Class="QLTXDataContext">
+  <Table Name="dbo.tblXe" Member="XeRows">
+    <Type Name="Xe">
+      <Column Name="Maxe" Member="Maxe" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Sokhung" Member="Sokhung" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Column Name="Somay" Member="Somay" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Column Name="HangSX" Member="HangSX" Type="System.String" DbType="nvarchar(50) NOT NULL" CanBeNull="false"/>
+      <Column Name="NamSX" Member="NamSX" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblYeuCau_Maxe" Member="YeuCauByMaxe" ThisKey="Maxe" OtherKey="Maxe" Type="YeuCau"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblKH" Member="KhachHangRows">
+    <Type Name="KhachHang">
+      <Column Name="MaK" Member="MaK" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenK" Member="TenK" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="Coquan" Member="Coquan" Type="System.String" DbType="nvarchar(100)" CanBeNull="true"/>
+      <Column Name="Diachi" Member="Diachi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="Tel" Member="Tel" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblYeuCau_MaK" Member="YeuCauByMaK" ThisKey="MaK" OtherKey="MaK" Type="YeuCau"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblYeuCau" Member="YeuCauRows">
+    <Type Name="YeuCau">
+      <Column Name="Maxe" Member="Maxe" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaK" Member="MaK" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Ngaymuon" Member="Ngaymuon" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Ngaytra" Member="Ngaytra" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblYeuCau_Maxe" Member="RefMaxe" ThisKey="Maxe" OtherKey="Maxe" Type="Xe" IsForeignKey="true"/>
+      <Association Name="FK_tblYeuCau_MaK" Member="RefMaK" ThisKey="MaK" OtherKey="MaK" Type="KhachHang" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,649 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLTBStore">
+          <EntitySet Name="tblPhong" EntityType="QLTB.Store.tblPhong" Schema="dbo" Table="tblPhong"/>
+          <EntitySet Name="tblNhanVien" EntityType="QLTB.Store.tblNhanVien" Schema="dbo" Table="tblNhanVien"/>
+          <EntitySet Name="tblThietBi" EntityType="QLTB.Store.tblThietBi" Schema="dbo" Table="tblThietBi"/>
+          <EntitySet Name="tblPhieuNhap" EntityType="QLTB.Store.tblPhieuNhap" Schema="dbo" Table="tblPhieuNhap"/>
+          <EntitySet Name="tblPhieuMuon" EntityType="QLTB.Store.tblPhieuMuon" Schema="dbo" Table="tblPhieuMuon"/>
+          <EntitySet Name="tblPhieuTra" EntityType="QLTB.Store.tblPhieuTra" Schema="dbo" Table="tblPhieuTra"/>
+          <AssociationSet Name="FK_tblNhanVien_MaPhong" Association="QLTB.Store.FK_tblNhanVien_MaPhong">
+            <End Role="PrincipalRole" EntitySet="tblPhong"/>
+            <End Role="DependentRole" EntitySet="tblNhanVien"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuNhap_MaNV" Association="QLTB.Store.FK_tblPhieuNhap_MaNV">
+            <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+            <End Role="DependentRole" EntitySet="tblPhieuNhap"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuNhap_MaTB" Association="QLTB.Store.FK_tblPhieuNhap_MaTB">
+            <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+            <End Role="DependentRole" EntitySet="tblPhieuNhap"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_NVLapPhieu" Association="QLTB.Store.FK_tblPhieuMuon_NVLapPhieu">
+            <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+            <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_MaTB" Association="QLTB.Store.FK_tblPhieuMuon_MaTB">
+            <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+            <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_NVMuon" Association="QLTB.Store.FK_tblPhieuMuon_NVMuon">
+            <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+            <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_MaPhong" Association="QLTB.Store.FK_tblPhieuMuon_MaPhong">
+            <End Role="PrincipalRole" EntitySet="tblPhong"/>
+            <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaPM" Association="QLTB.Store.FK_tblPhieuTra_MaPM">
+            <End Role="PrincipalRole" EntitySet="tblPhieuMuon"/>
+            <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaTB" Association="QLTB.Store.FK_tblPhieuTra_MaTB">
+            <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+            <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_NVTra" Association="QLTB.Store.FK_tblPhieuTra_NVTra">
+            <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+            <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_NVNhan" Association="QLTB.Store.FK_tblPhieuTra_NVNhan">
+            <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+            <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaPhong" Association="QLTB.Store.FK_tblPhieuTra_MaPhong">
+            <End Role="PrincipalRole" EntitySet="tblPhong"/>
+            <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblPhong">
+          <Key>
+            <PropertyRef Name="MaPhong"/>
+          </Key>
+          <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TenPhong" Nullable="false" Type="nvarchar" MaxLength="100"/>
+        </EntityType>
+        <EntityType Name="tblNhanVien">
+          <Key>
+            <PropertyRef Name="MaNV"/>
+          </Key>
+          <Property Name="MaNV" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TenNV" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="ChucVu" Nullable="false" Type="nvarchar" MaxLength="50"/>
+          <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+        </EntityType>
+        <EntityType Name="tblThietBi">
+          <Key>
+            <PropertyRef Name="MaTB"/>
+          </Key>
+          <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TenTB" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+          <Property Name="SoLuong" Nullable="false" Type="int"/>
+          <Property Name="GhiChu" Nullable="true" Type="nvarchar" MaxLength="255"/>
+          <Property Name="SoLuongHong" Nullable="false" Type="int"/>
+        </EntityType>
+        <EntityType Name="tblPhieuNhap">
+          <Key>
+            <PropertyRef Name="MaPN"/>
+          </Key>
+          <Property Name="MaPN" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaNV" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="NgayNhap" Nullable="false" Type="date"/>
+          <Property Name="SoLuong" Nullable="false" Type="int"/>
+          <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+        </EntityType>
+        <EntityType Name="tblPhieuMuon">
+          <Key>
+            <PropertyRef Name="MaPM"/>
+          </Key>
+          <Property Name="MaPM" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="NVLapPhieu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+          <Property Name="NgayMuon" Nullable="false" Type="date"/>
+          <Property Name="NVMuon" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="SoLuong" Nullable="false" Type="int"/>
+          <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+        </EntityType>
+        <EntityType Name="tblPhieuTra">
+          <Key>
+            <PropertyRef Name="MaPT"/>
+          </Key>
+          <Property Name="MaPT" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaPM" Nullable="true" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="NVTra" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="NVNhan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="NgayTra" Nullable="false" Type="date"/>
+          <Property Name="SoLuong" Nullable="false" Type="int"/>
+          <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+          <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="SoPhieuMuonGoc" Nullable="false" Type="nvarchar" MaxLength="12"/>
+        </EntityType>
+        <Association Name="FK_tblNhanVien_MaPhong">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblNhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuNhap_MaNV">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuNhap" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaNV"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuNhap_MaTB">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuNhap" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_NVLapPhieu">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVLapPhieu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_MaTB">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_NVMuon">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVMuon"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_MaPhong">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaPM">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="0..1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPM"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPM"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaTB">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_NVTra">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVTra"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_NVNhan">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVNhan"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaPhong">
+          <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLTBEntities">
+          <EntitySet Name="Phong" EntityType="ThucHanh9.Models.Phong"/>
+          <EntitySet Name="NhanVien" EntityType="ThucHanh9.Models.NhanVien"/>
+          <EntitySet Name="ThietBi" EntityType="ThucHanh9.Models.ThietBi"/>
+          <EntitySet Name="PhieuNhap" EntityType="ThucHanh9.Models.PhieuNhap"/>
+          <EntitySet Name="PhieuMuon" EntityType="ThucHanh9.Models.PhieuMuon"/>
+          <EntitySet Name="PhieuTra" EntityType="ThucHanh9.Models.PhieuTra"/>
+          <AssociationSet Name="FK_tblNhanVien_MaPhong" Association="ThucHanh9.Models.FK_tblNhanVien_MaPhong">
+            <End Role="PrincipalRole" EntitySet="Phong"/>
+            <End Role="DependentRole" EntitySet="NhanVien"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuNhap_MaNV" Association="ThucHanh9.Models.FK_tblPhieuNhap_MaNV">
+            <End Role="PrincipalRole" EntitySet="NhanVien"/>
+            <End Role="DependentRole" EntitySet="PhieuNhap"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuNhap_MaTB" Association="ThucHanh9.Models.FK_tblPhieuNhap_MaTB">
+            <End Role="PrincipalRole" EntitySet="ThietBi"/>
+            <End Role="DependentRole" EntitySet="PhieuNhap"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_NVLapPhieu" Association="ThucHanh9.Models.FK_tblPhieuMuon_NVLapPhieu">
+            <End Role="PrincipalRole" EntitySet="NhanVien"/>
+            <End Role="DependentRole" EntitySet="PhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_MaTB" Association="ThucHanh9.Models.FK_tblPhieuMuon_MaTB">
+            <End Role="PrincipalRole" EntitySet="ThietBi"/>
+            <End Role="DependentRole" EntitySet="PhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_NVMuon" Association="ThucHanh9.Models.FK_tblPhieuMuon_NVMuon">
+            <End Role="PrincipalRole" EntitySet="NhanVien"/>
+            <End Role="DependentRole" EntitySet="PhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuMuon_MaPhong" Association="ThucHanh9.Models.FK_tblPhieuMuon_MaPhong">
+            <End Role="PrincipalRole" EntitySet="Phong"/>
+            <End Role="DependentRole" EntitySet="PhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaPM" Association="ThucHanh9.Models.FK_tblPhieuTra_MaPM">
+            <End Role="PrincipalRole" EntitySet="PhieuMuon"/>
+            <End Role="DependentRole" EntitySet="PhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaTB" Association="ThucHanh9.Models.FK_tblPhieuTra_MaTB">
+            <End Role="PrincipalRole" EntitySet="ThietBi"/>
+            <End Role="DependentRole" EntitySet="PhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_NVTra" Association="ThucHanh9.Models.FK_tblPhieuTra_NVTra">
+            <End Role="PrincipalRole" EntitySet="NhanVien"/>
+            <End Role="DependentRole" EntitySet="PhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_NVNhan" Association="ThucHanh9.Models.FK_tblPhieuTra_NVNhan">
+            <End Role="PrincipalRole" EntitySet="NhanVien"/>
+            <End Role="DependentRole" EntitySet="PhieuTra"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieuTra_MaPhong" Association="ThucHanh9.Models.FK_tblPhieuTra_MaPhong">
+            <End Role="PrincipalRole" EntitySet="Phong"/>
+            <End Role="DependentRole" EntitySet="PhieuTra"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Phong">
+          <Key>
+            <PropertyRef Name="MaPhong"/>
+          </Key>
+          <Property Name="MaPhong" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TenPhong" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNV"/>
+          </Key>
+          <Property Name="MaNV" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TenNV" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="ChucVu" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+          <Property Name="MaPhong" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="ThietBi">
+          <Key>
+            <PropertyRef Name="MaTB"/>
+          </Key>
+          <Property Name="MaTB" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TenTB" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="TinhTrang" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+          <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+          <Property Name="GhiChu" Nullable="true" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+          <Property Name="SoLuongHong" Nullable="false" Type="Int32"/>
+        </EntityType>
+        <EntityType Name="PhieuNhap">
+          <Key>
+            <PropertyRef Name="MaPN"/>
+          </Key>
+          <Property Name="MaPN" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaNV" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaTB" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayNhap" Nullable="false" Type="DateTime"/>
+          <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+          <Property Name="TinhTrang" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="PhieuMuon">
+          <Key>
+            <PropertyRef Name="MaPM"/>
+          </Key>
+          <Property Name="MaPM" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="NVLapPhieu" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaTB" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TinhTrang" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayMuon" Nullable="false" Type="DateTime"/>
+          <Property Name="NVMuon" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+          <Property Name="MaPhong" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="PhieuTra">
+          <Key>
+            <PropertyRef Name="MaPT"/>
+          </Key>
+          <Property Name="MaPT" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaPM" Nullable="true" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaTB" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="NVTra" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="NVNhan" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayTra" Nullable="false" Type="DateTime"/>
+          <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+          <Property Name="TinhTrang" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+          <Property Name="MaPhong" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="SoPhieuMuonGoc" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_tblNhanVien_MaPhong">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Phong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuNhap_MaNV">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuNhap" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaNV"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuNhap_MaTB">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.ThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuNhap" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_NVLapPhieu">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVLapPhieu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_MaTB">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.ThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_NVMuon">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVMuon"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuMuon_MaPhong">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Phong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaPM">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="0..1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPM"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPM"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaTB">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.ThietBi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaTB"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaTB"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_NVTra">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVTra"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_NVNhan">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaNV"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="NVNhan"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieuTra_MaPhong">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Phong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuTra" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLTBStore" CdmEntityContainer="QLTBEntities">
+          <EntitySetMapping Name="Phong">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Phong">
+              <MappingFragment StoreEntitySet="tblPhong">
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanVien">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.NhanVien">
+              <MappingFragment StoreEntitySet="tblNhanVien">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV"/>
+                <ScalarProperty Name="TenNV" ColumnName="TenNV"/>
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu"/>
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThietBi">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ThietBi">
+              <MappingFragment StoreEntitySet="tblThietBi">
+                <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+                <ScalarProperty Name="TenTB" ColumnName="TenTB"/>
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu"/>
+                <ScalarProperty Name="SoLuongHong" ColumnName="SoLuongHong"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuNhap">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuNhap">
+              <MappingFragment StoreEntitySet="tblPhieuNhap">
+                <ScalarProperty Name="MaPN" ColumnName="MaPN"/>
+                <ScalarProperty Name="MaNV" ColumnName="MaNV"/>
+                <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap"/>
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuMuon">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuMuon">
+              <MappingFragment StoreEntitySet="tblPhieuMuon">
+                <ScalarProperty Name="MaPM" ColumnName="MaPM"/>
+                <ScalarProperty Name="NVLapPhieu" ColumnName="NVLapPhieu"/>
+                <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon"/>
+                <ScalarProperty Name="NVMuon" ColumnName="NVMuon"/>
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuTra">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuTra">
+              <MappingFragment StoreEntitySet="tblPhieuTra">
+                <ScalarProperty Name="MaPT" ColumnName="MaPT"/>
+                <ScalarProperty Name="MaPM" ColumnName="MaPM"/>
+                <ScalarProperty Name="MaTB" ColumnName="MaTB"/>
+                <ScalarProperty Name="NVTra" ColumnName="NVTra"/>
+                <ScalarProperty Name="NVNhan" ColumnName="NVNhan"/>
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra"/>
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang"/>
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong"/>
+                <ScalarProperty Name="SoPhieuMuonGoc" ColumnName="SoPhieuMuonGoc"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="f268ec31-2ccf-5aea-9ba6-85dfe3b4e63e" Name="QLTB" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Phong" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.NhanVien" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ThietBi" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.PhieuNhap" Width="2.1" PointX="0.6" PointY="4.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.PhieuMuon" Width="2.1" PointX="3.6" PointY="4.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.PhieuTra" Width="2.1" PointX="6.6" PointY="4.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblNhanVien_MaPhong"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuNhap_MaNV"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuNhap_MaTB"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuMuon_NVLapPhieu"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuMuon_MaTB"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuMuon_NVMuon"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuMuon_MaPhong"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuTra_MaPM"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuTra_MaTB"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuTra_NVTra"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuTra_NVNhan"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieuTra_MaPhong"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

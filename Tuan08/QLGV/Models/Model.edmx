@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLGV.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLGVStore">
+          <EntitySet Name="COSO" EntityType="QLGV.Store.COSO" Schema="dbo" Table="COSO"/>
+          <EntitySet Name="DONVI" EntityType="QLGV.Store.DONVI" Schema="dbo" Table="DONVI"/>
+          <EntitySet Name="GV" EntityType="QLGV.Store.GV" Schema="dbo" Table="GV"/>
+          <AssociationSet Name="FK_DONVI_Macoso" Association="QLGV.Store.FK_DONVI_Macoso">
+            <End Role="PrincipalRole" EntitySet="COSO"/>
+            <End Role="DependentRole" EntitySet="DONVI"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_GV_Madonvi" Association="QLGV.Store.FK_GV_Madonvi">
+            <End Role="PrincipalRole" EntitySet="DONVI"/>
+            <End Role="DependentRole" EntitySet="GV"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="COSO">
+          <Key>
+            <PropertyRef Name="Macoso"/>
+          </Key>
+          <Property Name="Macoso" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Tencoso" Nullable="false" Type="nvarchar" MaxLength="100"/>
+        </EntityType>
+        <EntityType Name="DONVI">
+          <Key>
+            <PropertyRef Name="Madonvi"/>
+          </Key>
+          <Property Name="Madonvi" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Tendonvi" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Macoso" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <EntityType Name="GV">
+          <Key>
+            <PropertyRef Name="Magv"/>
+          </Key>
+          <Property Name="Magv" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Sdt" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Ghichu" Nullable="true" Type="nvarchar" MaxLength="255"/>
+          <Property Name="Madonvi" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <Association Name="FK_DONVI_Macoso">
+          <End Role="PrincipalRole" Type="QLGV.Store.COSO" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLGV.Store.DONVI" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Macoso"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Macoso"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GV_Madonvi">
+          <End Role="PrincipalRole" Type="QLGV.Store.DONVI" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLGV.Store.GV" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Madonvi"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Madonvi"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLGVEntities">
+          <EntitySet Name="CoSo" EntityType="ThucHanh9.Models.CoSo"/>
+          <EntitySet Name="DonVi" EntityType="ThucHanh9.Models.DonVi"/>
+          <EntitySet Name="GiaoVien" EntityType="ThucHanh9.Models.GiaoVien"/>
+          <AssociationSet Name="FK_DONVI_Macoso" Association="ThucHanh9.Models.FK_DONVI_Macoso">
+            <End Role="PrincipalRole" EntitySet="CoSo"/>
+            <End Role="DependentRole" EntitySet="DonVi"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_GV_Madonvi" Association="ThucHanh9.Models.FK_GV_Madonvi">
+            <End Role="PrincipalRole" EntitySet="DonVi"/>
+            <End Role="DependentRole" EntitySet="GiaoVien"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CoSo">
+          <Key>
+            <PropertyRef Name="Macoso"/>
+          </Key>
+          <Property Name="Macoso" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Tencoso" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="DonVi">
+          <Key>
+            <PropertyRef Name="Madonvi"/>
+          </Key>
+          <Property Name="Madonvi" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Tendonvi" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Macoso" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="GiaoVien">
+          <Key>
+            <PropertyRef Name="Magv"/>
+          </Key>
+          <Property Name="Magv" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Sdt" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Ghichu" Nullable="true" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+          <Property Name="Madonvi" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_DONVI_Macoso">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.CoSo" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.DonVi" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Macoso"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Macoso"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GV_Madonvi">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.DonVi" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.GiaoVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Madonvi"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Madonvi"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLGVStore" CdmEntityContainer="QLGVEntities">
+          <EntitySetMapping Name="CoSo">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.CoSo">
+              <MappingFragment StoreEntitySet="COSO">
+                <ScalarProperty Name="Macoso" ColumnName="Macoso"/>
+                <ScalarProperty Name="Tencoso" ColumnName="Tencoso"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonVi">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.DonVi">
+              <MappingFragment StoreEntitySet="DONVI">
+                <ScalarProperty Name="Madonvi" ColumnName="Madonvi"/>
+                <ScalarProperty Name="Tendonvi" ColumnName="Tendonvi"/>
+                <ScalarProperty Name="Macoso" ColumnName="Macoso"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiaoVien">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.GiaoVien">
+              <MappingFragment StoreEntitySet="GV">
+                <ScalarProperty Name="Magv" ColumnName="Magv"/>
+                <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+                <ScalarProperty Name="Sdt" ColumnName="Sdt"/>
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu"/>
+                <ScalarProperty Name="Madonvi" ColumnName="Madonvi"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="33e63b0b-bc91-521f-894a-d457ed3bcd82" Name="QLGV" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.CoSo" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.DonVi" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.GiaoVien" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_DONVI_Macoso"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_GV_Madonvi"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

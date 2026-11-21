@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLTSEntities">
+    <EntitySet Name="UuTien" EntityType="ThucHanh9.Models.UuTien"/>
+    <EntitySet Name="Nganh" EntityType="ThucHanh9.Models.Nganh"/>
+    <EntitySet Name="ThiSinh" EntityType="ThucHanh9.Models.ThiSinh"/>
+    <AssociationSet Name="FK_TS_MaUT" Association="ThucHanh9.Models.FK_TS_MaUT">
+      <End Role="PrincipalRole" EntitySet="UuTien"/>
+      <End Role="DependentRole" EntitySet="ThiSinh"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_TS_MaN" Association="ThucHanh9.Models.FK_TS_MaN">
+      <End Role="PrincipalRole" EntitySet="Nganh"/>
+      <End Role="DependentRole" EntitySet="ThiSinh"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UuTien">
+    <Key>
+      <PropertyRef Name="MaUT"/>
+    </Key>
+    <Property Name="MaUT" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenUT" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="DC" Nullable="false" Type="Decimal" Precision="4" Scale="2"/>
+  </EntityType>
+  <EntityType Name="Nganh">
+    <Key>
+      <PropertyRef Name="MaN"/>
+    </Key>
+    <Property Name="MaN" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenN" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="SoCT" Nullable="false" Type="Int32"/>
+  </EntityType>
+  <EntityType Name="ThiSinh">
+    <Key>
+      <PropertyRef Name="SBD"/>
+    </Key>
+    <Property Name="SBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="NS" Nullable="false" Type="DateTime"/>
+    <Property Name="GT" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+    <Property Name="QQ" Nullable="false" Type="String" MaxLength="80" Unicode="true" FixedLength="false"/>
+    <Property Name="DT" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+    <Property Name="DL" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+    <Property Name="DH" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+    <Property Name="SP" Nullable="false" Type="Int32"/>
+    <Property Name="MaUT" Nullable="true" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaN" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <Association Name="FK_TS_MaUT">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.UuTien" Multiplicity="0..1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ThiSinh" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaUT"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaUT"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TS_MaN">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.Nganh" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ThiSinh" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaN"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaN"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLBT" Class="QLBTDataContext">
+  <Table Name="dbo.Thuoc" Member="MatHangRows">
+    <Type Name="MatHang">
+      <Column Name="MaThuoc" Member="MaThuoc" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenThuoc" Member="TenThuoc" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="CongDung" Member="CongDung" Type="System.String" DbType="nvarchar(120) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgaySanXuat" Member="NgaySanXuat" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayHetHanDung" Member="NgayHetHanDung" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="SoLuongSanXuat" Member="SoLuongSanXuat" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="DonViTinh" Member="DonViTinh" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_ChiTietDonHang_MaThuoc" Member="ChiTietDonHangByMaThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="DoiTacRows">
+    <Type Name="DoiTac">
+      <Column Name="MaKhachHang" Member="MaKhachHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenKhachHang" Member="TenKhachHang" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="DiaChi" Member="DiaChi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoDienThoai" Member="SoDienThoai" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DonHang_MaKhachHang" Member="DonHangByMaKhachHang" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="DonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DonHang" Member="DonHangRows">
+    <Type Name="DonHang">
+      <Column Name="MaDonHang" Member="MaDonHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaKhachHang" Member="MaKhachHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="NguoiLap" Member="NguoiLap" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayLap" Member="NgayLap" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayNhanHang" Member="NgayNhanHang" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DonHang_MaKhachHang" Member="RefMaKhachHang" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="DoiTac" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietDonHang_MaDonHang" Member="ChiTietDonHangByMaDonHang" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="ChiTietDonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangRows">
+    <Type Name="ChiTietDonHang">
+      <Column Name="MaDonHang" Member="MaDonHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaThuoc" Member="MaThuoc" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="DonViTinh" Member="DonViTinh" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Column Name="DonGia" Member="DonGia" Type="System.Decimal" DbType="decimal(16,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_ChiTietDonHang_MaDonHang" Member="RefMaDonHang" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="DonHang" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietDonHang_MaThuoc" Member="RefMaThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="MatHang" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

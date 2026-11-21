@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTV.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLTVStore">
+          <EntitySet Name="Sach" EntityType="QLTV.Store.Sach" Schema="dbo" Table="Sach"/>
+          <EntitySet Name="DocGia" EntityType="QLTV.Store.DocGia" Schema="dbo" Table="DocGia"/>
+          <EntitySet Name="PhieuMuonSach" EntityType="QLTV.Store.PhieuMuonSach" Schema="dbo" Table="PhieuMuonSach"/>
+          <EntitySet Name="ChiTietPhieuMuon" EntityType="QLTV.Store.ChiTietPhieuMuon" Schema="dbo" Table="ChiTietPhieuMuon"/>
+          <AssociationSet Name="FK_PhieuMuonSach_MaDocGia" Association="QLTV.Store.FK_PhieuMuonSach_MaDocGia">
+            <End Role="PrincipalRole" EntitySet="DocGia"/>
+            <End Role="DependentRole" EntitySet="PhieuMuonSach"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuMuon_SoPhieu" Association="QLTV.Store.FK_ChiTietPhieuMuon_SoPhieu">
+            <End Role="PrincipalRole" EntitySet="PhieuMuonSach"/>
+            <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuMuon_MaSach" Association="QLTV.Store.FK_ChiTietPhieuMuon_MaSach">
+            <End Role="PrincipalRole" EntitySet="Sach"/>
+            <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sach">
+          <Key>
+            <PropertyRef Name="MaSach"/>
+          </Key>
+          <Property Name="MaSach" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="TenSach" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="TacGia" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="NhaXuatBan" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="NamXB" Nullable="false" Type="int"/>
+        </EntityType>
+        <EntityType Name="DocGia">
+          <Key>
+            <PropertyRef Name="MaDocGia"/>
+          </Key>
+          <Property Name="MaDocGia" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="HoTen" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="DiaChi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+          <Property Name="SoDienThoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <EntityType Name="PhieuMuonSach">
+          <Key>
+            <PropertyRef Name="SoPhieu"/>
+          </Key>
+          <Property Name="SoPhieu" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaDocGia" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="HoTenNhanVien" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="NgayMuon" Nullable="false" Type="date"/>
+        </EntityType>
+        <EntityType Name="ChiTietPhieuMuon">
+          <Key>
+            <PropertyRef Name="SoPhieu"/>
+            <PropertyRef Name="MaSach"/>
+          </Key>
+          <Property Name="SoPhieu" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaSach" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="NgayHenTra" Nullable="false" Type="date"/>
+          <Property Name="NgayTra" Nullable="true" Type="date"/>
+        </EntityType>
+        <Association Name="FK_PhieuMuonSach_MaDocGia">
+          <End Role="PrincipalRole" Type="QLTV.Store.DocGia" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTV.Store.PhieuMuonSach" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDocGia"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDocGia"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuMuon_SoPhieu">
+          <End Role="PrincipalRole" Type="QLTV.Store.PhieuMuonSach" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTV.Store.ChiTietPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="SoPhieu"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="SoPhieu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuMuon_MaSach">
+          <End Role="PrincipalRole" Type="QLTV.Store.Sach" Multiplicity="1">
+            <OnDelete Action="Cascade"/>
+          </End>
+          <End Role="DependentRole" Type="QLTV.Store.ChiTietPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaSach"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaSach"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLTVEntities">
+          <EntitySet Name="Sach" EntityType="ThucHanh9.Models.Sach"/>
+          <EntitySet Name="DocGia" EntityType="ThucHanh9.Models.DocGia"/>
+          <EntitySet Name="PhieuMuon" EntityType="ThucHanh9.Models.PhieuMuon"/>
+          <EntitySet Name="ChiTietPhieuMuon" EntityType="ThucHanh9.Models.ChiTietPhieuMuon"/>
+          <AssociationSet Name="FK_PhieuMuonSach_MaDocGia" Association="ThucHanh9.Models.FK_PhieuMuonSach_MaDocGia">
+            <End Role="PrincipalRole" EntitySet="DocGia"/>
+            <End Role="DependentRole" EntitySet="PhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuMuon_SoPhieu" Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_SoPhieu">
+            <End Role="PrincipalRole" EntitySet="PhieuMuon"/>
+            <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietPhieuMuon_MaSach" Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_MaSach">
+            <End Role="PrincipalRole" EntitySet="Sach"/>
+            <End Role="DependentRole" EntitySet="ChiTietPhieuMuon"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sach">
+          <Key>
+            <PropertyRef Name="MaSach"/>
+          </Key>
+          <Property Name="MaSach" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="TenSach" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="TacGia" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="NhaXuatBan" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="NamXB" Nullable="false" Type="Int32"/>
+        </EntityType>
+        <EntityType Name="DocGia">
+          <Key>
+            <PropertyRef Name="MaDocGia"/>
+          </Key>
+          <Property Name="MaDocGia" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="HoTen" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="DiaChi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+          <Property Name="SoDienThoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="PhieuMuon">
+          <Key>
+            <PropertyRef Name="SoPhieu"/>
+          </Key>
+          <Property Name="SoPhieu" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaDocGia" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="HoTenNhanVien" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayMuon" Nullable="false" Type="DateTime"/>
+        </EntityType>
+        <EntityType Name="ChiTietPhieuMuon">
+          <Key>
+            <PropertyRef Name="SoPhieu"/>
+            <PropertyRef Name="MaSach"/>
+          </Key>
+          <Property Name="SoPhieu" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaSach" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayHenTra" Nullable="false" Type="DateTime"/>
+          <Property Name="NgayTra" Nullable="true" Type="DateTime"/>
+        </EntityType>
+        <Association Name="FK_PhieuMuonSach_MaDocGia">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.DocGia" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDocGia"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDocGia"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuMuon_SoPhieu">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.PhieuMuon" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="SoPhieu"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="SoPhieu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietPhieuMuon_MaSach">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Sach" Multiplicity="1">
+            <OnDelete Action="Cascade"/>
+          </End>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietPhieuMuon" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaSach"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaSach"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLTVStore" CdmEntityContainer="QLTVEntities">
+          <EntitySetMapping Name="Sach">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Sach">
+              <MappingFragment StoreEntitySet="Sach">
+                <ScalarProperty Name="MaSach" ColumnName="MaSach"/>
+                <ScalarProperty Name="TenSach" ColumnName="TenSach"/>
+                <ScalarProperty Name="TacGia" ColumnName="TacGia"/>
+                <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan"/>
+                <ScalarProperty Name="NamXB" ColumnName="NamXB"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocGia">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.DocGia">
+              <MappingFragment StoreEntitySet="DocGia">
+                <ScalarProperty Name="MaDocGia" ColumnName="MaDocGia"/>
+                <ScalarProperty Name="HoTen" ColumnName="HoTen"/>
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi"/>
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuMuon">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.PhieuMuon">
+              <MappingFragment StoreEntitySet="PhieuMuonSach">
+                <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu"/>
+                <ScalarProperty Name="MaDocGia" ColumnName="MaDocGia"/>
+                <ScalarProperty Name="HoTenNhanVien" ColumnName="HoTenNhanVien"/>
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietPhieuMuon">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ChiTietPhieuMuon">
+              <MappingFragment StoreEntitySet="ChiTietPhieuMuon">
+                <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu"/>
+                <ScalarProperty Name="MaSach" ColumnName="MaSach"/>
+                <ScalarProperty Name="NgayHenTra" ColumnName="NgayHenTra"/>
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="d7195e19-1a70-5152-aa53-a4f4908e8396" Name="QLTV" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Sach" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.DocGia" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.PhieuMuon" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ChiTietPhieuMuon" Width="2.1" PointX="0.6" PointY="4.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_PhieuMuonSach_MaDocGia"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_SoPhieu"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_ChiTietPhieuMuon_MaSach"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLCB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLCBStore">
+    <EntitySet Name="PHONGBAN" EntityType="QLCB.Store.PHONGBAN" Schema="dbo" Table="PHONGBAN"/>
+    <EntitySet Name="NGACH" EntityType="QLCB.Store.NGACH" Schema="dbo" Table="NGACH"/>
+    <EntitySet Name="CHVU" EntityType="QLCB.Store.CHVU" Schema="dbo" Table="CHVU"/>
+    <EntitySet Name="HOSO" EntityType="QLCB.Store.HOSO" Schema="dbo" Table="HOSO"/>
+    <EntitySet Name="LUONG" EntityType="QLCB.Store.LUONG" Schema="dbo" Table="LUONG"/>
+    <AssociationSet Name="FK_HOSO_MaNg" Association="QLCB.Store.FK_HOSO_MaNg">
+      <End Role="PrincipalRole" EntitySet="NGACH"/>
+      <End Role="DependentRole" EntitySet="HOSO"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_HOSO_MaCV" Association="QLCB.Store.FK_HOSO_MaCV">
+      <End Role="PrincipalRole" EntitySet="CHVU"/>
+      <End Role="DependentRole" EntitySet="HOSO"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_LUONG_manv" Association="QLCB.Store.FK_LUONG_manv">
+      <End Role="PrincipalRole" EntitySet="HOSO"/>
+      <End Role="DependentRole" EntitySet="LUONG"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_LUONG_maphong" Association="QLCB.Store.FK_LUONG_maphong">
+      <End Role="PrincipalRole" EntitySet="PHONGBAN"/>
+      <End Role="DependentRole" EntitySet="LUONG"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PHONGBAN">
+    <Key>
+      <PropertyRef Name="Maphong"/>
+    </Key>
+    <Property Name="Maphong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Tenphong" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Vitri" Nullable="false" Type="nvarchar" MaxLength="80"/>
+  </EntityType>
+  <EntityType Name="NGACH">
+    <Key>
+      <PropertyRef Name="MaNg"/>
+    </Key>
+    <Property Name="MaNg" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenNg" Nullable="false" Type="nvarchar" MaxLength="100"/>
+  </EntityType>
+  <EntityType Name="CHVU">
+    <Key>
+      <PropertyRef Name="MaCV"/>
+    </Key>
+    <Property Name="MaCV" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenCV" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Hesophucap" Nullable="false" Type="decimal" Precision="8" Scale="2"/>
+  </EntityType>
+  <EntityType Name="HOSO">
+    <Key>
+      <PropertyRef Name="manv"/>
+    </Key>
+    <Property Name="manv" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Gioitinh" Nullable="false" Type="nvarchar" MaxLength="8"/>
+    <Property Name="Ngaysinh" Nullable="false" Type="date"/>
+    <Property Name="Diachi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+    <Property Name="Ngayvn" Nullable="false" Type="date"/>
+    <Property Name="MaNg" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="MaCV" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <EntityType Name="LUONG">
+    <Key>
+      <PropertyRef Name="manv"/>
+    </Key>
+    <Property Name="manv" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="maphong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Hesoluong" Nullable="false" Type="decimal" Precision="8" Scale="2"/>
+    <Property Name="ngayLL" Nullable="false" Type="date"/>
+  </EntityType>
+  <Association Name="FK_HOSO_MaNg">
+    <End Role="PrincipalRole" Type="QLCB.Store.NGACH" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLCB.Store.HOSO" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNg"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaNg"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOSO_MaCV">
+    <End Role="PrincipalRole" Type="QLCB.Store.CHVU" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLCB.Store.HOSO" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaCV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaCV"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUONG_manv">
+    <End Role="PrincipalRole" Type="QLCB.Store.HOSO" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLCB.Store.LUONG" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="manv"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="manv"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUONG_maphong">
+    <End Role="PrincipalRole" Type="QLCB.Store.PHONGBAN" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLCB.Store.LUONG" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Maphong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="maphong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

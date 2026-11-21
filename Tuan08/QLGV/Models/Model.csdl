@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLGVEntities">
+    <EntitySet Name="CoSo" EntityType="ThucHanh9.Models.CoSo"/>
+    <EntitySet Name="DonVi" EntityType="ThucHanh9.Models.DonVi"/>
+    <EntitySet Name="GiaoVien" EntityType="ThucHanh9.Models.GiaoVien"/>
+    <AssociationSet Name="FK_DONVI_Macoso" Association="ThucHanh9.Models.FK_DONVI_Macoso">
+      <End Role="PrincipalRole" EntitySet="CoSo"/>
+      <End Role="DependentRole" EntitySet="DonVi"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_GV_Madonvi" Association="ThucHanh9.Models.FK_GV_Madonvi">
+      <End Role="PrincipalRole" EntitySet="DonVi"/>
+      <End Role="DependentRole" EntitySet="GiaoVien"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CoSo">
+    <Key>
+      <PropertyRef Name="Macoso"/>
+    </Key>
+    <Property Name="Macoso" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Tencoso" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="DonVi">
+    <Key>
+      <PropertyRef Name="Madonvi"/>
+    </Key>
+    <Property Name="Madonvi" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Tendonvi" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Macoso" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="Magv"/>
+    </Key>
+    <Property Name="Magv" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Sdt" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Ghichu" Nullable="true" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+    <Property Name="Madonvi" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <Association Name="FK_DONVI_Macoso">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.CoSo" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.DonVi" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Macoso"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Macoso"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GV_Madonvi">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.DonVi" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.GiaoVien" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Madonvi"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Madonvi"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

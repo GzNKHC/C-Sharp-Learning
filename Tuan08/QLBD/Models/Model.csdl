@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLBDEntities">
+    <EntitySet Name="BangDia" EntityType="ThucHanh9.Models.BangDia"/>
+    <EntitySet Name="KhachHang" EntityType="ThucHanh9.Models.KhachHang"/>
+    <EntitySet Name="Thue" EntityType="ThucHanh9.Models.Thue"/>
+    <AssociationSet Name="FK_THUE_MaKH" Association="ThucHanh9.Models.FK_THUE_MaKH">
+      <End Role="PrincipalRole" EntitySet="KhachHang"/>
+      <End Role="DependentRole" EntitySet="Thue"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_THUE_MaBD" Association="ThucHanh9.Models.FK_THUE_MaBD">
+      <End Role="PrincipalRole" EntitySet="BangDia"/>
+      <End Role="DependentRole" EntitySet="Thue"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BangDia">
+    <Key>
+      <PropertyRef Name="MaBD"/>
+    </Key>
+    <Property Name="MaBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Tenbangdia" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Soluong" Nullable="false" Type="Int32"/>
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH"/>
+    </Key>
+    <Property Name="MaKH" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Dienthoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="Thue">
+    <Key>
+      <PropertyRef Name="MaThue"/>
+    </Key>
+    <Property Name="MaThue" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaKH" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Soluongthue" Nullable="false" Type="Int32"/>
+    <Property Name="Ngaythue" Nullable="false" Type="DateTime"/>
+    <Property Name="Songaythue" Nullable="true" Type="Int32"/>
+    <Property Name="ThanhTien" Nullable="true" Type="Decimal" Precision="16" Scale="2"/>
+    <Property Name="NgayThanhToan" Nullable="true" Type="DateTime"/>
+  </EntityType>
+  <Association Name="FK_THUE_MaKH">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.KhachHang" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Thue" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaKH"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaKH"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THUE_MaBD">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.BangDia" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.Thue" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaBD"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaBD"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

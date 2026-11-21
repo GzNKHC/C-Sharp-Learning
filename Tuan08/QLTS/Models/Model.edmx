@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTS.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLTSStore">
+          <EntitySet Name="UT" EntityType="QLTS.Store.UT" Schema="dbo" Table="UT"/>
+          <EntitySet Name="NH" EntityType="QLTS.Store.NH" Schema="dbo" Table="NH"/>
+          <EntitySet Name="TS" EntityType="QLTS.Store.TS" Schema="dbo" Table="TS"/>
+          <AssociationSet Name="FK_TS_MaUT" Association="QLTS.Store.FK_TS_MaUT">
+            <End Role="PrincipalRole" EntitySet="UT"/>
+            <End Role="DependentRole" EntitySet="TS"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_MaN" Association="QLTS.Store.FK_TS_MaN">
+            <End Role="PrincipalRole" EntitySet="NH"/>
+            <End Role="DependentRole" EntitySet="TS"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UT">
+          <Key>
+            <PropertyRef Name="MaUT"/>
+          </Key>
+          <Property Name="MaUT" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="TenUT" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="DC" Nullable="false" Type="decimal" Precision="4" Scale="2"/>
+        </EntityType>
+        <EntityType Name="NH">
+          <Key>
+            <PropertyRef Name="MaN"/>
+          </Key>
+          <Property Name="MaN" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="TenN" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="SoCT" Nullable="false" Type="int"/>
+        </EntityType>
+        <EntityType Name="TS">
+          <Key>
+            <PropertyRef Name="SBD"/>
+          </Key>
+          <Property Name="SBD" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="NS" Nullable="false" Type="date"/>
+          <Property Name="GT" Nullable="false" Type="nvarchar" MaxLength="8"/>
+          <Property Name="QQ" Nullable="false" Type="nvarchar" MaxLength="80"/>
+          <Property Name="DT" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+          <Property Name="DL" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+          <Property Name="DH" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+          <Property Name="SP" Nullable="false" Type="int"/>
+          <Property Name="MaUT" Nullable="true" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaN" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <Association Name="FK_TS_MaUT">
+          <End Role="PrincipalRole" Type="QLTS.Store.UT" Multiplicity="0..1"/>
+          <End Role="DependentRole" Type="QLTS.Store.TS" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaUT"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaUT"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_MaN">
+          <End Role="PrincipalRole" Type="QLTS.Store.NH" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLTS.Store.TS" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaN"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaN"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLTSEntities">
+          <EntitySet Name="UuTien" EntityType="ThucHanh9.Models.UuTien"/>
+          <EntitySet Name="Nganh" EntityType="ThucHanh9.Models.Nganh"/>
+          <EntitySet Name="ThiSinh" EntityType="ThucHanh9.Models.ThiSinh"/>
+          <AssociationSet Name="FK_TS_MaUT" Association="ThucHanh9.Models.FK_TS_MaUT">
+            <End Role="PrincipalRole" EntitySet="UuTien"/>
+            <End Role="DependentRole" EntitySet="ThiSinh"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_MaN" Association="ThucHanh9.Models.FK_TS_MaN">
+            <End Role="PrincipalRole" EntitySet="Nganh"/>
+            <End Role="DependentRole" EntitySet="ThiSinh"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UuTien">
+          <Key>
+            <PropertyRef Name="MaUT"/>
+          </Key>
+          <Property Name="MaUT" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="TenUT" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="DC" Nullable="false" Type="Decimal" Precision="4" Scale="2"/>
+        </EntityType>
+        <EntityType Name="Nganh">
+          <Key>
+            <PropertyRef Name="MaN"/>
+          </Key>
+          <Property Name="MaN" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="TenN" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="SoCT" Nullable="false" Type="Int32"/>
+        </EntityType>
+        <EntityType Name="ThiSinh">
+          <Key>
+            <PropertyRef Name="SBD"/>
+          </Key>
+          <Property Name="SBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="NS" Nullable="false" Type="DateTime"/>
+          <Property Name="GT" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+          <Property Name="QQ" Nullable="false" Type="String" MaxLength="80" Unicode="true" FixedLength="false"/>
+          <Property Name="DT" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+          <Property Name="DL" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+          <Property Name="DH" Nullable="true" Type="Decimal" Precision="4" Scale="2"/>
+          <Property Name="SP" Nullable="false" Type="Int32"/>
+          <Property Name="MaUT" Nullable="true" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaN" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_TS_MaUT">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.UuTien" Multiplicity="0..1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ThiSinh" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaUT"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaUT"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_MaN">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.Nganh" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ThiSinh" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaN"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaN"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLTSStore" CdmEntityContainer="QLTSEntities">
+          <EntitySetMapping Name="UuTien">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.UuTien">
+              <MappingFragment StoreEntitySet="UT">
+                <ScalarProperty Name="MaUT" ColumnName="MaUT"/>
+                <ScalarProperty Name="TenUT" ColumnName="TenUT"/>
+                <ScalarProperty Name="DC" ColumnName="DC"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nganh">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Nganh">
+              <MappingFragment StoreEntitySet="NH">
+                <ScalarProperty Name="MaN" ColumnName="MaN"/>
+                <ScalarProperty Name="TenN" ColumnName="TenN"/>
+                <ScalarProperty Name="SoCT" ColumnName="SoCT"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThiSinh">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ThiSinh">
+              <MappingFragment StoreEntitySet="TS">
+                <ScalarProperty Name="SBD" ColumnName="SBD"/>
+                <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+                <ScalarProperty Name="NS" ColumnName="NS"/>
+                <ScalarProperty Name="GT" ColumnName="GT"/>
+                <ScalarProperty Name="QQ" ColumnName="QQ"/>
+                <ScalarProperty Name="DT" ColumnName="DT"/>
+                <ScalarProperty Name="DL" ColumnName="DL"/>
+                <ScalarProperty Name="DH" ColumnName="DH"/>
+                <ScalarProperty Name="SP" ColumnName="SP"/>
+                <ScalarProperty Name="MaUT" ColumnName="MaUT"/>
+                <ScalarProperty Name="MaN" ColumnName="MaN"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="44064e3b-ecb9-542b-93e9-09721f044186" Name="QLTS" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.UuTien" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Nganh" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ThiSinh" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_TS_MaUT"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_TS_MaN"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

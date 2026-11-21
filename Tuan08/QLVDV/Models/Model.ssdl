@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLVDV.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLVDVStore">
+    <EntitySet Name="tblThanhvien" EntityType="QLVDV.Store.tblThanhvien" Schema="dbo" Table="tblThanhvien"/>
+    <EntitySet Name="tblHoatdong" EntityType="QLVDV.Store.tblHoatdong" Schema="dbo" Table="tblHoatdong"/>
+    <EntitySet Name="tblPhieu" EntityType="QLVDV.Store.tblPhieu" Schema="dbo" Table="tblPhieu"/>
+    <AssociationSet Name="FK_tblPhieu_Mahoatdong" Association="QLVDV.Store.FK_tblPhieu_Mahoatdong">
+      <End Role="PrincipalRole" EntitySet="tblHoatdong"/>
+      <End Role="DependentRole" EntitySet="tblPhieu"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieu_Mathanhvien" Association="QLVDV.Store.FK_tblPhieu_Mathanhvien">
+      <End Role="PrincipalRole" EntitySet="tblThanhvien"/>
+      <End Role="DependentRole" EntitySet="tblPhieu"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblThanhvien">
+    <Key>
+      <PropertyRef Name="MaThanhvien"/>
+    </Key>
+    <Property Name="MaThanhvien" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Ngaysinh" Nullable="false" Type="date"/>
+    <Property Name="Gioitinh" Nullable="false" Type="nvarchar" MaxLength="8"/>
+    <Property Name="Donvi" Nullable="false" Type="nvarchar" MaxLength="60"/>
+    <Property Name="Sothich" Nullable="true" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Diachi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+    <Property Name="Dienthoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Quyenhan" Nullable="false" Type="nvarchar" MaxLength="50"/>
+  </EntityType>
+  <EntityType Name="tblHoatdong">
+    <Key>
+      <PropertyRef Name="Mahoatdong"/>
+    </Key>
+    <Property Name="Mahoatdong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Tenhoatdong" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Noidung" Nullable="false" Type="nvarchar" MaxLength="255"/>
+    <Property Name="Thoigian" Nullable="false" Type="datetime2" Precision="0"/>
+    <Property Name="Kinhphi" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+  </EntityType>
+  <EntityType Name="tblPhieu">
+    <Key>
+      <PropertyRef Name="Mahoatdong"/>
+      <PropertyRef Name="Mathanhvien"/>
+      <PropertyRef Name="ThoigianBD"/>
+    </Key>
+    <Property Name="Mahoatdong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Mathanhvien" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="ThoigianBD" Nullable="false" Type="datetime2" Precision="0"/>
+    <Property Name="ThoigianKT" Nullable="false" Type="datetime2" Precision="0"/>
+    <Property Name="Danhgia" Nullable="true" Type="nvarchar" MaxLength="150"/>
+  </EntityType>
+  <Association Name="FK_tblPhieu_Mahoatdong">
+    <End Role="PrincipalRole" Type="QLVDV.Store.tblHoatdong" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLVDV.Store.tblPhieu" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Mahoatdong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Mahoatdong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieu_Mathanhvien">
+    <End Role="PrincipalRole" Type="QLVDV.Store.tblThanhvien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLVDV.Store.tblPhieu" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaThanhvien"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Mathanhvien"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

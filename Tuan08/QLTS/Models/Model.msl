@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLTSStore" CdmEntityContainer="QLTSEntities">
+    <EntitySetMapping Name="UuTien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.UuTien">
+        <MappingFragment StoreEntitySet="UT">
+          <ScalarProperty Name="MaUT" ColumnName="MaUT"/>
+          <ScalarProperty Name="TenUT" ColumnName="TenUT"/>
+          <ScalarProperty Name="DC" ColumnName="DC"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nganh">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Nganh">
+        <MappingFragment StoreEntitySet="NH">
+          <ScalarProperty Name="MaN" ColumnName="MaN"/>
+          <ScalarProperty Name="TenN" ColumnName="TenN"/>
+          <ScalarProperty Name="SoCT" ColumnName="SoCT"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThiSinh">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ThiSinh">
+        <MappingFragment StoreEntitySet="TS">
+          <ScalarProperty Name="SBD" ColumnName="SBD"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="NS" ColumnName="NS"/>
+          <ScalarProperty Name="GT" ColumnName="GT"/>
+          <ScalarProperty Name="QQ" ColumnName="QQ"/>
+          <ScalarProperty Name="DT" ColumnName="DT"/>
+          <ScalarProperty Name="DL" ColumnName="DL"/>
+          <ScalarProperty Name="DH" ColumnName="DH"/>
+          <ScalarProperty Name="SP" ColumnName="SP"/>
+          <ScalarProperty Name="MaUT" ColumnName="MaUT"/>
+          <ScalarProperty Name="MaN" ColumnName="MaN"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

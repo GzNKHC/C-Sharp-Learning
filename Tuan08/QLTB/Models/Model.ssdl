@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLTBStore">
+    <EntitySet Name="tblPhong" EntityType="QLTB.Store.tblPhong" Schema="dbo" Table="tblPhong"/>
+    <EntitySet Name="tblNhanVien" EntityType="QLTB.Store.tblNhanVien" Schema="dbo" Table="tblNhanVien"/>
+    <EntitySet Name="tblThietBi" EntityType="QLTB.Store.tblThietBi" Schema="dbo" Table="tblThietBi"/>
+    <EntitySet Name="tblPhieuNhap" EntityType="QLTB.Store.tblPhieuNhap" Schema="dbo" Table="tblPhieuNhap"/>
+    <EntitySet Name="tblPhieuMuon" EntityType="QLTB.Store.tblPhieuMuon" Schema="dbo" Table="tblPhieuMuon"/>
+    <EntitySet Name="tblPhieuTra" EntityType="QLTB.Store.tblPhieuTra" Schema="dbo" Table="tblPhieuTra"/>
+    <AssociationSet Name="FK_tblNhanVien_MaPhong" Association="QLTB.Store.FK_tblNhanVien_MaPhong">
+      <End Role="PrincipalRole" EntitySet="tblPhong"/>
+      <End Role="DependentRole" EntitySet="tblNhanVien"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuNhap_MaNV" Association="QLTB.Store.FK_tblPhieuNhap_MaNV">
+      <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+      <End Role="DependentRole" EntitySet="tblPhieuNhap"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuNhap_MaTB" Association="QLTB.Store.FK_tblPhieuNhap_MaTB">
+      <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+      <End Role="DependentRole" EntitySet="tblPhieuNhap"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuMuon_NVLapPhieu" Association="QLTB.Store.FK_tblPhieuMuon_NVLapPhieu">
+      <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+      <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuMuon_MaTB" Association="QLTB.Store.FK_tblPhieuMuon_MaTB">
+      <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+      <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuMuon_NVMuon" Association="QLTB.Store.FK_tblPhieuMuon_NVMuon">
+      <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+      <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuMuon_MaPhong" Association="QLTB.Store.FK_tblPhieuMuon_MaPhong">
+      <End Role="PrincipalRole" EntitySet="tblPhong"/>
+      <End Role="DependentRole" EntitySet="tblPhieuMuon"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuTra_MaPM" Association="QLTB.Store.FK_tblPhieuTra_MaPM">
+      <End Role="PrincipalRole" EntitySet="tblPhieuMuon"/>
+      <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuTra_MaTB" Association="QLTB.Store.FK_tblPhieuTra_MaTB">
+      <End Role="PrincipalRole" EntitySet="tblThietBi"/>
+      <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuTra_NVTra" Association="QLTB.Store.FK_tblPhieuTra_NVTra">
+      <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+      <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuTra_NVNhan" Association="QLTB.Store.FK_tblPhieuTra_NVNhan">
+      <End Role="PrincipalRole" EntitySet="tblNhanVien"/>
+      <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPhieuTra_MaPhong" Association="QLTB.Store.FK_tblPhieuTra_MaPhong">
+      <End Role="PrincipalRole" EntitySet="tblPhong"/>
+      <End Role="DependentRole" EntitySet="tblPhieuTra"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblPhong">
+    <Key>
+      <PropertyRef Name="MaPhong"/>
+    </Key>
+    <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TenPhong" Nullable="false" Type="nvarchar" MaxLength="100"/>
+  </EntityType>
+  <EntityType Name="tblNhanVien">
+    <Key>
+      <PropertyRef Name="MaNV"/>
+    </Key>
+    <Property Name="MaNV" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TenNV" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="ChucVu" Nullable="false" Type="nvarchar" MaxLength="50"/>
+    <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+  </EntityType>
+  <EntityType Name="tblThietBi">
+    <Key>
+      <PropertyRef Name="MaTB"/>
+    </Key>
+    <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TenTB" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+    <Property Name="GhiChu" Nullable="true" Type="nvarchar" MaxLength="255"/>
+    <Property Name="SoLuongHong" Nullable="false" Type="int"/>
+  </EntityType>
+  <EntityType Name="tblPhieuNhap">
+    <Key>
+      <PropertyRef Name="MaPN"/>
+    </Key>
+    <Property Name="MaPN" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaNV" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="NgayNhap" Nullable="false" Type="date"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+    <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+  </EntityType>
+  <EntityType Name="tblPhieuMuon">
+    <Key>
+      <PropertyRef Name="MaPM"/>
+    </Key>
+    <Property Name="MaPM" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="NVLapPhieu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+    <Property Name="NgayMuon" Nullable="false" Type="date"/>
+    <Property Name="NVMuon" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+    <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+  </EntityType>
+  <EntityType Name="tblPhieuTra">
+    <Key>
+      <PropertyRef Name="MaPT"/>
+    </Key>
+    <Property Name="MaPT" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaPM" Nullable="true" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaTB" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="NVTra" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="NVNhan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="NgayTra" Nullable="false" Type="date"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+    <Property Name="TinhTrang" Nullable="false" Type="nvarchar" MaxLength="50"/>
+    <Property Name="MaPhong" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="SoPhieuMuonGoc" Nullable="false" Type="nvarchar" MaxLength="12"/>
+  </EntityType>
+  <Association Name="FK_tblNhanVien_MaPhong">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblNhanVien" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaPhong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaPhong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuNhap_MaNV">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuNhap" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaNV"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuNhap_MaTB">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuNhap" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaTB"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaTB"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuMuon_NVLapPhieu">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="NVLapPhieu"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuMuon_MaTB">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaTB"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaTB"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuMuon_NVMuon">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="NVMuon"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuMuon_MaPhong">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaPhong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaPhong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuTra_MaPM">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblPhieuMuon" Multiplicity="0..1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaPM"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaPM"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuTra_MaTB">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblThietBi" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaTB"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaTB"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuTra_NVTra">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="NVTra"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuTra_NVNhan">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblNhanVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaNV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="NVNhan"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPhieuTra_MaPhong">
+    <End Role="PrincipalRole" Type="QLTB.Store.tblPhong" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTB.Store.tblPhieuTra" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaPhong"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaPhong"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

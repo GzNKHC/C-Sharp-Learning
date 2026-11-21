@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLDEntities">
+    <EntitySet Name="Lop" EntityType="ThucHanh9.Models.Lop"/>
+    <EntitySet Name="SinhVien" EntityType="ThucHanh9.Models.SinhVien"/>
+    <EntitySet Name="HocPhan" EntityType="ThucHanh9.Models.HocPhan"/>
+    <EntitySet Name="DangKy" EntityType="ThucHanh9.Models.DangKy"/>
+    <EntitySet Name="KetQua" EntityType="ThucHanh9.Models.KetQua"/>
+    <AssociationSet Name="FK_SV_MaL" Association="ThucHanh9.Models.FK_SV_MaL">
+      <End Role="PrincipalRole" EntitySet="Lop"/>
+      <End Role="DependentRole" EntitySet="SinhVien"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_DangKyHocPhan_MaSV" Association="ThucHanh9.Models.FK_DangKyHocPhan_MaSV">
+      <End Role="PrincipalRole" EntitySet="SinhVien"/>
+      <End Role="DependentRole" EntitySet="DangKy"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_DangKyHocPhan_MaHP" Association="ThucHanh9.Models.FK_DangKyHocPhan_MaHP">
+      <End Role="PrincipalRole" EntitySet="HocPhan"/>
+      <End Role="DependentRole" EntitySet="DangKy"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_Diem_MaSV" Association="ThucHanh9.Models.FK_Diem_MaSV">
+      <End Role="PrincipalRole" EntitySet="SinhVien"/>
+      <End Role="DependentRole" EntitySet="KetQua"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_Diem_MaHP" Association="ThucHanh9.Models.FK_Diem_MaHP">
+      <End Role="PrincipalRole" EntitySet="HocPhan"/>
+      <End Role="DependentRole" EntitySet="KetQua"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="MaL"/>
+    </Key>
+    <Property Name="MaL" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenL" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="MaSV"/>
+    </Key>
+    <Property Name="MaSV" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="GT" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+    <Property Name="NS" Nullable="false" Type="DateTime"/>
+    <Property Name="QQ" Nullable="false" Type="String" MaxLength="80" Unicode="true" FixedLength="false"/>
+    <Property Name="MaL" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="HocPhan">
+    <Key>
+      <PropertyRef Name="MaHP"/>
+    </Key>
+    <Property Name="MaHP" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenHP" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="SoTC" Nullable="false" Type="Int32"/>
+    <Property Name="HK" Nullable="false" Type="Int32"/>
+  </EntityType>
+  <EntityType Name="DangKy">
+    <Key>
+      <PropertyRef Name="MaSV"/>
+      <PropertyRef Name="MaHP"/>
+    </Key>
+    <Property Name="MaSV" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaHP" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="KetQua">
+    <Key>
+      <PropertyRef Name="MaSV"/>
+      <PropertyRef Name="MaHP"/>
+    </Key>
+    <Property Name="MaSV" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaHP" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Diem" Nullable="false" Type="Decimal" Precision="4" Scale="2"/>
+  </EntityType>
+  <Association Name="FK_SV_MaL">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.Lop" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.SinhVien" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaL"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaL"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DangKyHocPhan_MaSV">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.SinhVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.DangKy" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaSV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaSV"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DangKyHocPhan_MaHP">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.HocPhan" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.DangKy" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaHP"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaHP"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diem_MaSV">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.SinhVien" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.KetQua" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaSV"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaSV"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diem_MaHP">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.HocPhan" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.KetQua" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaHP"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaHP"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

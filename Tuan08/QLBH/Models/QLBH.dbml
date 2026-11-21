@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLBH" Class="QLBHDataContext">
+  <Table Name="dbo.MatHang" Member="MatHangRows">
+    <Type Name="MatHang">
+      <Column Name="MaMatHang" Member="MaMatHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenMatHang" Member="TenMatHang" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="XuatXu" Member="XuatXu" Type="System.String" DbType="nvarchar(60) NOT NULL" CanBeNull="false"/>
+      <Column Name="DonViTinh" Member="DonViTinh" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_ChiTietDonHang_MaMatHang" Member="ChiTietDonHangByMaMatHang" ThisKey="MaMatHang" OtherKey="MaMatHang" Type="ChiTietDonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DaiLy" Member="DoiTacRows">
+    <Type Name="DoiTac">
+      <Column Name="MaDaiLy" Member="MaDaiLy" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenDaiLy" Member="TenDaiLy" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="DiaChi" Member="DiaChi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoDienThoai" Member="SoDienThoai" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DonHang_MaDaiLy" Member="DonHangByMaDaiLy" ThisKey="MaDaiLy" OtherKey="MaDaiLy" Type="DonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DonHang" Member="DonHangRows">
+    <Type Name="DonHang">
+      <Column Name="MaDonHang" Member="MaDonHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaDaiLy" Member="MaDaiLy" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="NguoiLap" Member="NguoiLap" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayLap" Member="NgayLap" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayNhanHang" Member="NgayNhanHang" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DonHang_MaDaiLy" Member="RefMaDaiLy" ThisKey="MaDaiLy" OtherKey="MaDaiLy" Type="DoiTac" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietDonHang_MaDonHang" Member="ChiTietDonHangByMaDonHang" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="ChiTietDonHang"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangRows">
+    <Type Name="ChiTietDonHang">
+      <Column Name="MaDonHang" Member="MaDonHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaMatHang" Member="MaMatHang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="SoLuong" Member="SoLuong" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="Gia" Member="Gia" Type="System.Decimal" DbType="decimal(16,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_ChiTietDonHang_MaDonHang" Member="RefMaDonHang" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="DonHang" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietDonHang_MaMatHang" Member="RefMaMatHang" ThisKey="MaMatHang" OtherKey="MaMatHang" Type="MatHang" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

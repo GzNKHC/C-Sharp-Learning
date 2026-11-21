@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLBTEntities">
+    <EntitySet Name="MatHang" EntityType="ThucHanh9.Models.MatHang"/>
+    <EntitySet Name="DoiTac" EntityType="ThucHanh9.Models.DoiTac"/>
+    <EntitySet Name="DonHang" EntityType="ThucHanh9.Models.DonHang"/>
+    <EntitySet Name="ChiTietDonHang" EntityType="ThucHanh9.Models.ChiTietDonHang"/>
+    <AssociationSet Name="FK_DonHang_MaKhachHang" Association="ThucHanh9.Models.FK_DonHang_MaKhachHang">
+      <End Role="PrincipalRole" EntitySet="DoiTac"/>
+      <End Role="DependentRole" EntitySet="DonHang"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonHang_MaDonHang" Association="ThucHanh9.Models.FK_ChiTietDonHang_MaDonHang">
+      <End Role="PrincipalRole" EntitySet="DonHang"/>
+      <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonHang_MaThuoc" Association="ThucHanh9.Models.FK_ChiTietDonHang_MaThuoc">
+      <End Role="PrincipalRole" EntitySet="MatHang"/>
+      <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MatHang">
+    <Key>
+      <PropertyRef Name="MaThuoc"/>
+    </Key>
+    <Property Name="MaThuoc" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenThuoc" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="CongDung" Nullable="false" Type="String" MaxLength="120" Unicode="true" FixedLength="false"/>
+    <Property Name="NgaySanXuat" Nullable="false" Type="DateTime"/>
+    <Property Name="NgayHetHanDung" Nullable="false" Type="DateTime"/>
+    <Property Name="SoLuongSanXuat" Nullable="false" Type="Int32"/>
+    <Property Name="DonViTinh" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="DoiTac">
+    <Key>
+      <PropertyRef Name="MaKhachHang"/>
+    </Key>
+    <Property Name="MaKhachHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenKhachHang" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="DiaChi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+    <Property Name="SoDienThoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang"/>
+    </Key>
+    <Property Name="MaDonHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaKhachHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="NguoiLap" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="NgayLap" Nullable="false" Type="DateTime"/>
+    <Property Name="NgayNhanHang" Nullable="false" Type="DateTime"/>
+  </EntityType>
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang"/>
+      <PropertyRef Name="MaThuoc"/>
+    </Key>
+    <Property Name="MaDonHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaThuoc" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+    <Property Name="DonViTinh" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+    <Property Name="DonGia" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+  </EntityType>
+  <Association Name="FK_DonHang_MaKhachHang">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.DoiTac" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.DonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaKhachHang"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaKhachHang"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDonHang_MaDonHang">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.DonHang" Multiplicity="1">
+      <OnDelete Action="Cascade"/>
+    </End>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietDonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaDonHang"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaDonHang"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDonHang_MaThuoc">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.MatHang" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietDonHang" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaThuoc"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaThuoc"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

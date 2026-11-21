@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLNS" Class="QLNSDataContext">
+  <Table Name="dbo.tblPhongBan" Member="PhongBanRows">
+    <Type Name="PhongBan">
+      <Column Name="MaPhongBan" Member="MaPhongBan" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenPhongBan" Member="TenPhongBan" Type="System.String" DbType="nvarchar(25) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoDTPB" Member="SoDTPB" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblNhanVien_MaPhongBan" Member="NhanVienByMaPhongBan" ThisKey="MaPhongBan" OtherKey="MaPhongBan" Type="NhanVien"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblChucVu" Member="ChucVuRows">
+    <Type Name="ChucVu">
+      <Column Name="MaChucVu" Member="MaChucVu" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenChucVu" Member="TenChucVu" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false"/>
+      <Column Name="PhuCapChucVu" Member="PhuCapChucVu" Type="System.Decimal" DbType="decimal(16,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_tblNhanVien_MaChucVu" Member="NhanVienByMaChucVu" ThisKey="MaChucVu" OtherKey="MaChucVu" Type="NhanVien"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.tblNhanVien" Member="NhanVienRows">
+    <Type Name="NhanVien">
+      <Column Name="MaNhanVien" Member="MaNhanVien" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="HoTenNhanVien" Member="HoTenNhanVien" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaPhongBan" Member="MaPhongBan" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaChucVu" Member="MaChucVu" Type="System.String" DbType="nvarchar(12) NOT NULL" CanBeNull="false"/>
+      <Column Name="SCMND" Member="SCMND" Type="System.String" DbType="nvarchar(15)" CanBeNull="true"/>
+      <Column Name="DiaChi" Member="DiaChi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="GioiTinh" Member="GioiTinh" Type="System.String" DbType="nvarchar(8) NOT NULL" CanBeNull="false"/>
+      <Column Name="QueQuan" Member="QueQuan" Type="System.String" DbType="nvarchar(80) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgaySinh" Member="NgaySinh" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="SoDT" Member="SoDT" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayVaoLam" Member="NgayVaoLam" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="SoBHYT" Member="SoBHYT" Type="System.String" DbType="nvarchar(20)" CanBeNull="true"/>
+      <Column Name="SoBHXH" Member="SoBHXH" Type="System.String" DbType="nvarchar(20)" CanBeNull="true"/>
+      <Column Name="HinhAnh" Member="HinhAnh" Type="System.String" DbType="nvarchar(255)" CanBeNull="true"/>
+      <Column Name="GhiChu" Member="GhiChu" Type="System.String" DbType="nvarchar(255)" CanBeNull="true"/>
+      <Association Name="FK_tblNhanVien_MaPhongBan" Member="RefMaPhongBan" ThisKey="MaPhongBan" OtherKey="MaPhongBan" Type="PhongBan" IsForeignKey="true"/>
+      <Association Name="FK_tblNhanVien_MaChucVu" Member="RefMaChucVu" ThisKey="MaChucVu" OtherKey="MaChucVu" Type="ChucVu" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

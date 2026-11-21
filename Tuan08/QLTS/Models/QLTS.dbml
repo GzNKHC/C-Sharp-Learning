@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLTS" Class="QLTSDataContext">
+  <Table Name="dbo.UT" Member="UuTienRows">
+    <Type Name="UuTien">
+      <Column Name="MaUT" Member="MaUT" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenUT" Member="TenUT" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="DC" Member="DC" Type="System.Decimal" DbType="decimal(4,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_TS_MaUT" Member="ThiSinhByMaUT" ThisKey="MaUT" OtherKey="MaUT" Type="ThiSinh"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.NH" Member="NganhRows">
+    <Type Name="Nganh">
+      <Column Name="MaN" Member="MaN" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenN" Member="TenN" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoCT" Member="SoCT" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_TS_MaN" Member="ThiSinhByMaN" ThisKey="MaN" OtherKey="MaN" Type="ThiSinh"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.TS" Member="ThiSinhRows">
+    <Type Name="ThiSinh">
+      <Column Name="SBD" Member="SBD" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NS" Member="NS" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="GT" Member="GT" Type="System.String" DbType="nvarchar(8) NOT NULL" CanBeNull="false"/>
+      <Column Name="QQ" Member="QQ" Type="System.String" DbType="nvarchar(80) NOT NULL" CanBeNull="false"/>
+      <Column Name="DT" Member="DT" Type="System.Decimal" DbType="decimal(4,2)" CanBeNull="true"/>
+      <Column Name="DL" Member="DL" Type="System.Decimal" DbType="decimal(4,2)" CanBeNull="true"/>
+      <Column Name="DH" Member="DH" Type="System.Decimal" DbType="decimal(4,2)" CanBeNull="true"/>
+      <Column Name="SP" Member="SP" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="MaUT" Member="MaUT" Type="System.String" DbType="nvarchar(20)" CanBeNull="true"/>
+      <Column Name="MaN" Member="MaN" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_TS_MaUT" Member="RefMaUT" ThisKey="MaUT" OtherKey="MaUT" Type="UuTien" IsForeignKey="true"/>
+      <Association Name="FK_TS_MaN" Member="RefMaN" ThisKey="MaN" OtherKey="MaN" Type="Nganh" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

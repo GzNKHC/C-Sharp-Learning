@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLCBStore" CdmEntityContainer="QLCBEntities">
+    <EntitySetMapping Name="PhongBan">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.PhongBan">
+        <MappingFragment StoreEntitySet="PHONGBAN">
+          <ScalarProperty Name="Maphong" ColumnName="Maphong"/>
+          <ScalarProperty Name="Tenphong" ColumnName="Tenphong"/>
+          <ScalarProperty Name="Vitri" ColumnName="Vitri"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ngach">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Ngach">
+        <MappingFragment StoreEntitySet="NGACH">
+          <ScalarProperty Name="MaNg" ColumnName="MaNg"/>
+          <ScalarProperty Name="TenNg" ColumnName="TenNg"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucVu">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ChucVu">
+        <MappingFragment StoreEntitySet="CHVU">
+          <ScalarProperty Name="MaCV" ColumnName="MaCV"/>
+          <ScalarProperty Name="TenCV" ColumnName="TenCV"/>
+          <ScalarProperty Name="Hesophucap" ColumnName="Hesophucap"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoSo">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.HoSo">
+        <MappingFragment StoreEntitySet="HOSO">
+          <ScalarProperty Name="manv" ColumnName="manv"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh"/>
+          <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh"/>
+          <ScalarProperty Name="Diachi" ColumnName="Diachi"/>
+          <ScalarProperty Name="Ngayvn" ColumnName="Ngayvn"/>
+          <ScalarProperty Name="MaNg" ColumnName="MaNg"/>
+          <ScalarProperty Name="MaCV" ColumnName="MaCV"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Luong">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Luong">
+        <MappingFragment StoreEntitySet="LUONG">
+          <ScalarProperty Name="manv" ColumnName="manv"/>
+          <ScalarProperty Name="maphong" ColumnName="maphong"/>
+          <ScalarProperty Name="Hesoluong" ColumnName="Hesoluong"/>
+          <ScalarProperty Name="ngayLL" ColumnName="ngayLL"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

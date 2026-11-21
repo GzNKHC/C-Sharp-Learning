@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLNS.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLNSStore">
+          <EntitySet Name="tblPhongBan" EntityType="QLNS.Store.tblPhongBan" Schema="dbo" Table="tblPhongBan"/>
+          <EntitySet Name="tblChucVu" EntityType="QLNS.Store.tblChucVu" Schema="dbo" Table="tblChucVu"/>
+          <EntitySet Name="tblNhanVien" EntityType="QLNS.Store.tblNhanVien" Schema="dbo" Table="tblNhanVien"/>
+          <AssociationSet Name="FK_tblNhanVien_MaPhongBan" Association="QLNS.Store.FK_tblNhanVien_MaPhongBan">
+            <End Role="PrincipalRole" EntitySet="tblPhongBan"/>
+            <End Role="DependentRole" EntitySet="tblNhanVien"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNhanVien_MaChucVu" Association="QLNS.Store.FK_tblNhanVien_MaChucVu">
+            <End Role="PrincipalRole" EntitySet="tblChucVu"/>
+            <End Role="DependentRole" EntitySet="tblNhanVien"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblPhongBan">
+          <Key>
+            <PropertyRef Name="MaPhongBan"/>
+          </Key>
+          <Property Name="MaPhongBan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TenPhongBan" Nullable="false" Type="nvarchar" MaxLength="25"/>
+          <Property Name="SoDTPB" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <EntityType Name="tblChucVu">
+          <Key>
+            <PropertyRef Name="MaChucVu"/>
+          </Key>
+          <Property Name="MaChucVu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="TenChucVu" Nullable="false" Type="nvarchar" MaxLength="30"/>
+          <Property Name="PhuCapChucVu" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <EntityType Name="tblNhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien"/>
+          </Key>
+          <Property Name="MaNhanVien" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="HoTenNhanVien" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="MaPhongBan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="MaChucVu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+          <Property Name="SCMND" Nullable="true" Type="nvarchar" MaxLength="15"/>
+          <Property Name="DiaChi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+          <Property Name="GioiTinh" Nullable="false" Type="nvarchar" MaxLength="8"/>
+          <Property Name="QueQuan" Nullable="false" Type="nvarchar" MaxLength="80"/>
+          <Property Name="NgaySinh" Nullable="false" Type="date"/>
+          <Property Name="SoDT" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="NgayVaoLam" Nullable="false" Type="date"/>
+          <Property Name="SoBHYT" Nullable="true" Type="nvarchar" MaxLength="20"/>
+          <Property Name="SoBHXH" Nullable="true" Type="nvarchar" MaxLength="20"/>
+          <Property Name="HinhAnh" Nullable="true" Type="nvarchar" MaxLength="255"/>
+          <Property Name="GhiChu" Nullable="true" Type="nvarchar" MaxLength="255"/>
+        </EntityType>
+        <Association Name="FK_tblNhanVien_MaPhongBan">
+          <End Role="PrincipalRole" Type="QLNS.Store.tblPhongBan" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLNS.Store.tblNhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhongBan"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhongBan"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNhanVien_MaChucVu">
+          <End Role="PrincipalRole" Type="QLNS.Store.tblChucVu" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLNS.Store.tblNhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaChucVu"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaChucVu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLNSEntities">
+          <EntitySet Name="PhongBan" EntityType="ThucHanh9.Models.PhongBan"/>
+          <EntitySet Name="ChucVu" EntityType="ThucHanh9.Models.ChucVu"/>
+          <EntitySet Name="NhanVien" EntityType="ThucHanh9.Models.NhanVien"/>
+          <AssociationSet Name="FK_tblNhanVien_MaPhongBan" Association="ThucHanh9.Models.FK_tblNhanVien_MaPhongBan">
+            <End Role="PrincipalRole" EntitySet="PhongBan"/>
+            <End Role="DependentRole" EntitySet="NhanVien"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNhanVien_MaChucVu" Association="ThucHanh9.Models.FK_tblNhanVien_MaChucVu">
+            <End Role="PrincipalRole" EntitySet="ChucVu"/>
+            <End Role="DependentRole" EntitySet="NhanVien"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PhongBan">
+          <Key>
+            <PropertyRef Name="MaPhongBan"/>
+          </Key>
+          <Property Name="MaPhongBan" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TenPhongBan" Nullable="false" Type="String" MaxLength="25" Unicode="true" FixedLength="false"/>
+          <Property Name="SoDTPB" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="ChucVu">
+          <Key>
+            <PropertyRef Name="MaChucVu"/>
+          </Key>
+          <Property Name="MaChucVu" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="TenChucVu" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+          <Property Name="PhuCapChucVu" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien"/>
+          </Key>
+          <Property Name="MaNhanVien" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="HoTenNhanVien" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="MaPhongBan" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="MaChucVu" Nullable="false" Type="String" MaxLength="12" Unicode="true" FixedLength="false"/>
+          <Property Name="SCMND" Nullable="true" Type="String" MaxLength="15" Unicode="true" FixedLength="false"/>
+          <Property Name="DiaChi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+          <Property Name="GioiTinh" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+          <Property Name="QueQuan" Nullable="false" Type="String" MaxLength="80" Unicode="true" FixedLength="false"/>
+          <Property Name="NgaySinh" Nullable="false" Type="DateTime"/>
+          <Property Name="SoDT" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayVaoLam" Nullable="false" Type="DateTime"/>
+          <Property Name="SoBHYT" Nullable="true" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="SoBHXH" Nullable="true" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="HinhAnh" Nullable="true" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+          <Property Name="GhiChu" Nullable="true" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_tblNhanVien_MaPhongBan">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.PhongBan" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaPhongBan"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaPhongBan"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNhanVien_MaChucVu">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.ChucVu" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.NhanVien" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaChucVu"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaChucVu"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLNSStore" CdmEntityContainer="QLNSEntities">
+          <EntitySetMapping Name="PhongBan">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.PhongBan">
+              <MappingFragment StoreEntitySet="tblPhongBan">
+                <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan"/>
+                <ScalarProperty Name="TenPhongBan" ColumnName="TenPhongBan"/>
+                <ScalarProperty Name="SoDTPB" ColumnName="SoDTPB"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChucVu">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ChucVu">
+              <MappingFragment StoreEntitySet="tblChucVu">
+                <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu"/>
+                <ScalarProperty Name="TenChucVu" ColumnName="TenChucVu"/>
+                <ScalarProperty Name="PhuCapChucVu" ColumnName="PhuCapChucVu"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanVien">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.NhanVien">
+              <MappingFragment StoreEntitySet="tblNhanVien">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien"/>
+                <ScalarProperty Name="HoTenNhanVien" ColumnName="HoTenNhanVien"/>
+                <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan"/>
+                <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu"/>
+                <ScalarProperty Name="SCMND" ColumnName="SCMND"/>
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi"/>
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh"/>
+                <ScalarProperty Name="QueQuan" ColumnName="QueQuan"/>
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh"/>
+                <ScalarProperty Name="SoDT" ColumnName="SoDT"/>
+                <ScalarProperty Name="NgayVaoLam" ColumnName="NgayVaoLam"/>
+                <ScalarProperty Name="SoBHYT" ColumnName="SoBHYT"/>
+                <ScalarProperty Name="SoBHXH" ColumnName="SoBHXH"/>
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh"/>
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="bf10f2c0-893b-5dde-911a-1dbf40ea06a4" Name="QLNS" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.PhongBan" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ChucVu" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.NhanVien" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblNhanVien_MaPhongBan"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblNhanVien_MaChucVu"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

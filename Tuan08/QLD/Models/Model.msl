@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLDStore" CdmEntityContainer="QLDEntities">
+    <EntitySetMapping Name="Lop">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Lop">
+        <MappingFragment StoreEntitySet="Lop">
+          <ScalarProperty Name="MaL" ColumnName="MaL"/>
+          <ScalarProperty Name="TenL" ColumnName="TenL"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SinhVien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.SinhVien">
+        <MappingFragment StoreEntitySet="SV">
+          <ScalarProperty Name="MaSV" ColumnName="MaSV"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="GT" ColumnName="GT"/>
+          <ScalarProperty Name="NS" ColumnName="NS"/>
+          <ScalarProperty Name="QQ" ColumnName="QQ"/>
+          <ScalarProperty Name="MaL" ColumnName="MaL"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HocPhan">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.HocPhan">
+        <MappingFragment StoreEntitySet="HP">
+          <ScalarProperty Name="MaHP" ColumnName="MaHP"/>
+          <ScalarProperty Name="TenHP" ColumnName="TenHP"/>
+          <ScalarProperty Name="SoTC" ColumnName="SoTC"/>
+          <ScalarProperty Name="HK" ColumnName="HK"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DangKy">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.DangKy">
+        <MappingFragment StoreEntitySet="DangKyHocPhan">
+          <ScalarProperty Name="MaSV" ColumnName="MaSV"/>
+          <ScalarProperty Name="MaHP" ColumnName="MaHP"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KetQua">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.KetQua">
+        <MappingFragment StoreEntitySet="Diem">
+          <ScalarProperty Name="MaSV" ColumnName="MaSV"/>
+          <ScalarProperty Name="MaHP" ColumnName="MaHP"/>
+          <ScalarProperty Name="Diem" ColumnName="Diem"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLBHStore" CdmEntityContainer="QLBHEntities">
+    <EntitySetMapping Name="MatHang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.MatHang">
+        <MappingFragment StoreEntitySet="MatHang">
+          <ScalarProperty Name="MaMatHang" ColumnName="MaMatHang"/>
+          <ScalarProperty Name="TenMatHang" ColumnName="TenMatHang"/>
+          <ScalarProperty Name="XuatXu" ColumnName="XuatXu"/>
+          <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoiTac">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.DoiTac">
+        <MappingFragment StoreEntitySet="DaiLy">
+          <ScalarProperty Name="MaDaiLy" ColumnName="MaDaiLy"/>
+          <ScalarProperty Name="TenDaiLy" ColumnName="TenDaiLy"/>
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi"/>
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang"/>
+          <ScalarProperty Name="MaDaiLy" ColumnName="MaDaiLy"/>
+          <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap"/>
+          <ScalarProperty Name="NgayLap" ColumnName="NgayLap"/>
+          <ScalarProperty Name="NgayNhanHang" ColumnName="NgayNhanHang"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietDonHang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ChiTietDonHang">
+        <MappingFragment StoreEntitySet="ChiTietDonHang">
+          <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang"/>
+          <ScalarProperty Name="MaMatHang" ColumnName="MaMatHang"/>
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+          <ScalarProperty Name="Gia" ColumnName="Gia"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLVDV.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLVDVStore">
+          <EntitySet Name="tblThanhvien" EntityType="QLVDV.Store.tblThanhvien" Schema="dbo" Table="tblThanhvien"/>
+          <EntitySet Name="tblHoatdong" EntityType="QLVDV.Store.tblHoatdong" Schema="dbo" Table="tblHoatdong"/>
+          <EntitySet Name="tblPhieu" EntityType="QLVDV.Store.tblPhieu" Schema="dbo" Table="tblPhieu"/>
+          <AssociationSet Name="FK_tblPhieu_Mahoatdong" Association="QLVDV.Store.FK_tblPhieu_Mahoatdong">
+            <End Role="PrincipalRole" EntitySet="tblHoatdong"/>
+            <End Role="DependentRole" EntitySet="tblPhieu"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieu_Mathanhvien" Association="QLVDV.Store.FK_tblPhieu_Mathanhvien">
+            <End Role="PrincipalRole" EntitySet="tblThanhvien"/>
+            <End Role="DependentRole" EntitySet="tblPhieu"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblThanhvien">
+          <Key>
+            <PropertyRef Name="MaThanhvien"/>
+          </Key>
+          <Property Name="MaThanhvien" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Ngaysinh" Nullable="false" Type="date"/>
+          <Property Name="Gioitinh" Nullable="false" Type="nvarchar" MaxLength="8"/>
+          <Property Name="Donvi" Nullable="false" Type="nvarchar" MaxLength="60"/>
+          <Property Name="Sothich" Nullable="true" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Diachi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+          <Property Name="Dienthoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Quyenhan" Nullable="false" Type="nvarchar" MaxLength="50"/>
+        </EntityType>
+        <EntityType Name="tblHoatdong">
+          <Key>
+            <PropertyRef Name="Mahoatdong"/>
+          </Key>
+          <Property Name="Mahoatdong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Tenhoatdong" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Noidung" Nullable="false" Type="nvarchar" MaxLength="255"/>
+          <Property Name="Thoigian" Nullable="false" Type="datetime2" Precision="0"/>
+          <Property Name="Kinhphi" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <EntityType Name="tblPhieu">
+          <Key>
+            <PropertyRef Name="Mahoatdong"/>
+            <PropertyRef Name="Mathanhvien"/>
+            <PropertyRef Name="ThoigianBD"/>
+          </Key>
+          <Property Name="Mahoatdong" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Mathanhvien" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="ThoigianBD" Nullable="false" Type="datetime2" Precision="0"/>
+          <Property Name="ThoigianKT" Nullable="false" Type="datetime2" Precision="0"/>
+          <Property Name="Danhgia" Nullable="true" Type="nvarchar" MaxLength="150"/>
+        </EntityType>
+        <Association Name="FK_tblPhieu_Mahoatdong">
+          <End Role="PrincipalRole" Type="QLVDV.Store.tblHoatdong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLVDV.Store.tblPhieu" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Mahoatdong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Mahoatdong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieu_Mathanhvien">
+          <End Role="PrincipalRole" Type="QLVDV.Store.tblThanhvien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLVDV.Store.tblPhieu" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaThanhvien"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Mathanhvien"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLVDVEntities">
+          <EntitySet Name="ThanhVien" EntityType="ThucHanh9.Models.ThanhVien"/>
+          <EntitySet Name="HoatDong" EntityType="ThucHanh9.Models.HoatDong"/>
+          <EntitySet Name="Phieu" EntityType="ThucHanh9.Models.Phieu"/>
+          <AssociationSet Name="FK_tblPhieu_Mahoatdong" Association="ThucHanh9.Models.FK_tblPhieu_Mahoatdong">
+            <End Role="PrincipalRole" EntitySet="HoatDong"/>
+            <End Role="DependentRole" EntitySet="Phieu"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhieu_Mathanhvien" Association="ThucHanh9.Models.FK_tblPhieu_Mathanhvien">
+            <End Role="PrincipalRole" EntitySet="ThanhVien"/>
+            <End Role="DependentRole" EntitySet="Phieu"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ThanhVien">
+          <Key>
+            <PropertyRef Name="MaThanhvien"/>
+          </Key>
+          <Property Name="MaThanhvien" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Ngaysinh" Nullable="false" Type="DateTime"/>
+          <Property Name="Gioitinh" Nullable="false" Type="String" MaxLength="8" Unicode="true" FixedLength="false"/>
+          <Property Name="Donvi" Nullable="false" Type="String" MaxLength="60" Unicode="true" FixedLength="false"/>
+          <Property Name="Sothich" Nullable="true" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Diachi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+          <Property Name="Dienthoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Quyenhan" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="HoatDong">
+          <Key>
+            <PropertyRef Name="Mahoatdong"/>
+          </Key>
+          <Property Name="Mahoatdong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Tenhoatdong" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Noidung" Nullable="false" Type="String" MaxLength="255" Unicode="true" FixedLength="false"/>
+          <Property Name="Thoigian" Nullable="false" Type="DateTime" Precision="0"/>
+          <Property Name="Kinhphi" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <EntityType Name="Phieu">
+          <Key>
+            <PropertyRef Name="Mahoatdong"/>
+            <PropertyRef Name="Mathanhvien"/>
+            <PropertyRef Name="ThoigianBD"/>
+          </Key>
+          <Property Name="Mahoatdong" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Mathanhvien" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="ThoigianBD" Nullable="false" Type="DateTime" Precision="0"/>
+          <Property Name="ThoigianKT" Nullable="false" Type="DateTime" Precision="0"/>
+          <Property Name="Danhgia" Nullable="true" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <Association Name="FK_tblPhieu_Mahoatdong">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.HoatDong" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.Phieu" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="Mahoatdong"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Mahoatdong"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhieu_Mathanhvien">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.ThanhVien" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.Phieu" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaThanhvien"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="Mathanhvien"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLVDVStore" CdmEntityContainer="QLVDVEntities">
+          <EntitySetMapping Name="ThanhVien">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ThanhVien">
+              <MappingFragment StoreEntitySet="tblThanhvien">
+                <ScalarProperty Name="MaThanhvien" ColumnName="MaThanhvien"/>
+                <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+                <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh"/>
+                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh"/>
+                <ScalarProperty Name="Donvi" ColumnName="Donvi"/>
+                <ScalarProperty Name="Sothich" ColumnName="Sothich"/>
+                <ScalarProperty Name="Diachi" ColumnName="Diachi"/>
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai"/>
+                <ScalarProperty Name="Quyenhan" ColumnName="Quyenhan"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoatDong">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.HoatDong">
+              <MappingFragment StoreEntitySet="tblHoatdong">
+                <ScalarProperty Name="Mahoatdong" ColumnName="Mahoatdong"/>
+                <ScalarProperty Name="Tenhoatdong" ColumnName="Tenhoatdong"/>
+                <ScalarProperty Name="Noidung" ColumnName="Noidung"/>
+                <ScalarProperty Name="Thoigian" ColumnName="Thoigian"/>
+                <ScalarProperty Name="Kinhphi" ColumnName="Kinhphi"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phieu">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Phieu">
+              <MappingFragment StoreEntitySet="tblPhieu">
+                <ScalarProperty Name="Mahoatdong" ColumnName="Mahoatdong"/>
+                <ScalarProperty Name="Mathanhvien" ColumnName="Mathanhvien"/>
+                <ScalarProperty Name="ThoigianBD" ColumnName="ThoigianBD"/>
+                <ScalarProperty Name="ThoigianKT" ColumnName="ThoigianKT"/>
+                <ScalarProperty Name="Danhgia" ColumnName="Danhgia"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="82b3d034-57d3-5a8d-a511-72fe35bfad12" Name="QLVDV" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ThanhVien" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.HoatDong" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Phieu" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieu_Mahoatdong"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_tblPhieu_Mathanhvien"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

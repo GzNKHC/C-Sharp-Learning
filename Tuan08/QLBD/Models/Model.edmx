@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLBD.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLBDStore">
+          <EntitySet Name="BD" EntityType="QLBD.Store.BD" Schema="dbo" Table="BD"/>
+          <EntitySet Name="KH" EntityType="QLBD.Store.KH" Schema="dbo" Table="KH"/>
+          <EntitySet Name="THUE" EntityType="QLBD.Store.THUE" Schema="dbo" Table="THUE"/>
+          <AssociationSet Name="FK_THUE_MaKH" Association="QLBD.Store.FK_THUE_MaKH">
+            <End Role="PrincipalRole" EntitySet="KH"/>
+            <End Role="DependentRole" EntitySet="THUE"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_THUE_MaBD" Association="QLBD.Store.FK_THUE_MaBD">
+            <End Role="PrincipalRole" EntitySet="BD"/>
+            <End Role="DependentRole" EntitySet="THUE"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BD">
+          <Key>
+            <PropertyRef Name="MaBD"/>
+          </Key>
+          <Property Name="MaBD" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Tenbangdia" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Soluong" Nullable="false" Type="int"/>
+        </EntityType>
+        <EntityType Name="KH">
+          <Key>
+            <PropertyRef Name="MaKH"/>
+          </Key>
+          <Property Name="MaKH" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="Dienthoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <EntityType Name="THUE">
+          <Key>
+            <PropertyRef Name="MaThue"/>
+          </Key>
+          <Property Name="MaThue" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaKH" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaBD" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="Soluongthue" Nullable="false" Type="int"/>
+          <Property Name="Ngaythue" Nullable="false" Type="date"/>
+          <Property Name="Songaythue" Nullable="true" Type="int"/>
+          <Property Name="ThanhTien" Nullable="true" Type="decimal" Precision="16" Scale="2"/>
+          <Property Name="NgayThanhToan" Nullable="true" Type="date"/>
+        </EntityType>
+        <Association Name="FK_THUE_MaKH">
+          <End Role="PrincipalRole" Type="QLBD.Store.KH" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLBD.Store.THUE" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaKH"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaKH"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THUE_MaBD">
+          <End Role="PrincipalRole" Type="QLBD.Store.BD" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLBD.Store.THUE" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaBD"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaBD"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLBDEntities">
+          <EntitySet Name="BangDia" EntityType="ThucHanh9.Models.BangDia"/>
+          <EntitySet Name="KhachHang" EntityType="ThucHanh9.Models.KhachHang"/>
+          <EntitySet Name="Thue" EntityType="ThucHanh9.Models.Thue"/>
+          <AssociationSet Name="FK_THUE_MaKH" Association="ThucHanh9.Models.FK_THUE_MaKH">
+            <End Role="PrincipalRole" EntitySet="KhachHang"/>
+            <End Role="DependentRole" EntitySet="Thue"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_THUE_MaBD" Association="ThucHanh9.Models.FK_THUE_MaBD">
+            <End Role="PrincipalRole" EntitySet="BangDia"/>
+            <End Role="DependentRole" EntitySet="Thue"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BangDia">
+          <Key>
+            <PropertyRef Name="MaBD"/>
+          </Key>
+          <Property Name="MaBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Tenbangdia" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Soluong" Nullable="false" Type="Int32"/>
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKH"/>
+          </Key>
+          <Property Name="MaKH" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Hoten" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="Dienthoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="Thue">
+          <Key>
+            <PropertyRef Name="MaThue"/>
+          </Key>
+          <Property Name="MaThue" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaKH" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaBD" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="Soluongthue" Nullable="false" Type="Int32"/>
+          <Property Name="Ngaythue" Nullable="false" Type="DateTime"/>
+          <Property Name="Songaythue" Nullable="true" Type="Int32"/>
+          <Property Name="ThanhTien" Nullable="true" Type="Decimal" Precision="16" Scale="2"/>
+          <Property Name="NgayThanhToan" Nullable="true" Type="DateTime"/>
+        </EntityType>
+        <Association Name="FK_THUE_MaKH">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.KhachHang" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.Thue" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaKH"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaKH"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THUE_MaBD">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.BangDia" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.Thue" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaBD"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaBD"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLBDStore" CdmEntityContainer="QLBDEntities">
+          <EntitySetMapping Name="BangDia">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.BangDia">
+              <MappingFragment StoreEntitySet="BD">
+                <ScalarProperty Name="MaBD" ColumnName="MaBD"/>
+                <ScalarProperty Name="Tenbangdia" ColumnName="Tenbangdia"/>
+                <ScalarProperty Name="Soluong" ColumnName="Soluong"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHang">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.KhachHang">
+              <MappingFragment StoreEntitySet="KH">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH"/>
+                <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thue">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.Thue">
+              <MappingFragment StoreEntitySet="THUE">
+                <ScalarProperty Name="MaThue" ColumnName="MaThue"/>
+                <ScalarProperty Name="MaKH" ColumnName="MaKH"/>
+                <ScalarProperty Name="MaBD" ColumnName="MaBD"/>
+                <ScalarProperty Name="Soluongthue" ColumnName="Soluongthue"/>
+                <ScalarProperty Name="Ngaythue" ColumnName="Ngaythue"/>
+                <ScalarProperty Name="Songaythue" ColumnName="Songaythue"/>
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien"/>
+                <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="41bf9f2c-4afe-510f-8ee9-e423d1e7fc11" Name="QLBD" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.BangDia" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.KhachHang" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.Thue" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_THUE_MaKH"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_THUE_MaBD"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

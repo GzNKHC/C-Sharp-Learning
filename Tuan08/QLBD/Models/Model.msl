@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLBDStore" CdmEntityContainer="QLBDEntities">
+    <EntitySetMapping Name="BangDia">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.BangDia">
+        <MappingFragment StoreEntitySet="BD">
+          <ScalarProperty Name="MaBD" ColumnName="MaBD"/>
+          <ScalarProperty Name="Tenbangdia" ColumnName="Tenbangdia"/>
+          <ScalarProperty Name="Soluong" ColumnName="Soluong"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.KhachHang">
+        <MappingFragment StoreEntitySet="KH">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Thue">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Thue">
+        <MappingFragment StoreEntitySet="THUE">
+          <ScalarProperty Name="MaThue" ColumnName="MaThue"/>
+          <ScalarProperty Name="MaKH" ColumnName="MaKH"/>
+          <ScalarProperty Name="MaBD" ColumnName="MaBD"/>
+          <ScalarProperty Name="Soluongthue" ColumnName="Soluongthue"/>
+          <ScalarProperty Name="Ngaythue" ColumnName="Ngaythue"/>
+          <ScalarProperty Name="Songaythue" ColumnName="Songaythue"/>
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien"/>
+          <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

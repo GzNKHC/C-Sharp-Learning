@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLKHStore" CdmEntityContainer="QLKHEntities">
+    <EntitySetMapping Name="Hang">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.Hang">
+        <MappingFragment StoreEntitySet="HANGSX">
+          <ScalarProperty Name="mahang" ColumnName="mahang"/>
+          <ScalarProperty Name="tenhang" ColumnName="tenhang"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DienThoai">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.DienThoai">
+        <MappingFragment StoreEntitySet="DIENTHOAI">
+          <ScalarProperty Name="ma" ColumnName="ma"/>
+          <ScalarProperty Name="ten" ColumnName="ten"/>
+          <ScalarProperty Name="dongia" ColumnName="dongia"/>
+          <ScalarProperty Name="tonkho" ColumnName="tonkho"/>
+          <ScalarProperty Name="mahang" ColumnName="mahang"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

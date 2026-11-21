@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTX.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLTXStore">
+    <EntitySet Name="tblXe" EntityType="QLTX.Store.tblXe" Schema="dbo" Table="tblXe"/>
+    <EntitySet Name="tblKH" EntityType="QLTX.Store.tblKH" Schema="dbo" Table="tblKH"/>
+    <EntitySet Name="tblYeuCau" EntityType="QLTX.Store.tblYeuCau" Schema="dbo" Table="tblYeuCau"/>
+    <AssociationSet Name="FK_tblYeuCau_Maxe" Association="QLTX.Store.FK_tblYeuCau_Maxe">
+      <End Role="PrincipalRole" EntitySet="tblXe"/>
+      <End Role="DependentRole" EntitySet="tblYeuCau"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblYeuCau_MaK" Association="QLTX.Store.FK_tblYeuCau_MaK">
+      <End Role="PrincipalRole" EntitySet="tblKH"/>
+      <End Role="DependentRole" EntitySet="tblYeuCau"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblXe">
+    <Key>
+      <PropertyRef Name="Maxe"/>
+    </Key>
+    <Property Name="Maxe" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Sokhung" Nullable="false" Type="nvarchar" MaxLength="30"/>
+    <Property Name="Somay" Nullable="false" Type="nvarchar" MaxLength="30"/>
+    <Property Name="HangSX" Nullable="false" Type="nvarchar" MaxLength="50"/>
+    <Property Name="NamSX" Nullable="false" Type="int"/>
+    <Property Name="SoLuong" Nullable="false" Type="int"/>
+  </EntityType>
+  <EntityType Name="tblKH">
+    <Key>
+      <PropertyRef Name="MaK"/>
+    </Key>
+    <Property Name="MaK" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenK" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Coquan" Nullable="true" Type="nvarchar" MaxLength="100"/>
+    <Property Name="Diachi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+    <Property Name="Tel" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <EntityType Name="tblYeuCau">
+    <Key>
+      <PropertyRef Name="Maxe"/>
+      <PropertyRef Name="MaK"/>
+      <PropertyRef Name="Ngaymuon"/>
+    </Key>
+    <Property Name="Maxe" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="MaK" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Ngaymuon" Nullable="false" Type="date"/>
+    <Property Name="Ngaytra" Nullable="false" Type="date"/>
+  </EntityType>
+  <Association Name="FK_tblYeuCau_Maxe">
+    <End Role="PrincipalRole" Type="QLTX.Store.tblXe" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTX.Store.tblYeuCau" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Maxe"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Maxe"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblYeuCau_MaK">
+    <End Role="PrincipalRole" Type="QLTX.Store.tblKH" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTX.Store.tblYeuCau" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaK"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaK"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

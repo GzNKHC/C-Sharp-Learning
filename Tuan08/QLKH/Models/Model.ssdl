@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLKH.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLKHStore">
+    <EntitySet Name="HANGSX" EntityType="QLKH.Store.HANGSX" Schema="dbo" Table="HANGSX"/>
+    <EntitySet Name="DIENTHOAI" EntityType="QLKH.Store.DIENTHOAI" Schema="dbo" Table="DIENTHOAI"/>
+    <AssociationSet Name="FK_DIENTHOAI_mahang" Association="QLKH.Store.FK_DIENTHOAI_mahang">
+      <End Role="PrincipalRole" EntitySet="HANGSX"/>
+      <End Role="DependentRole" EntitySet="DIENTHOAI"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HANGSX">
+    <Key>
+      <PropertyRef Name="mahang"/>
+    </Key>
+    <Property Name="mahang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="tenhang" Nullable="false" Type="nvarchar" MaxLength="100"/>
+  </EntityType>
+  <EntityType Name="DIENTHOAI">
+    <Key>
+      <PropertyRef Name="ma"/>
+    </Key>
+    <Property Name="ma" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="ten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="dongia" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+    <Property Name="tonkho" Nullable="false" Type="int"/>
+    <Property Name="mahang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <Association Name="FK_DIENTHOAI_mahang">
+    <End Role="PrincipalRole" Type="QLKH.Store.HANGSX" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLKH.Store.DIENTHOAI" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="mahang"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="mahang"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLTV" Class="QLTVDataContext">
+  <Table Name="dbo.Sach" Member="SachRows">
+    <Type Name="Sach">
+      <Column Name="MaSach" Member="MaSach" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenSach" Member="TenSach" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="TacGia" Member="TacGia" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NhaXuatBan" Member="NhaXuatBan" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NamXB" Member="NamXB" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_ChiTietPhieuMuon_MaSach" Member="ChiTietPhieuMuonByMaSach" ThisKey="MaSach" OtherKey="MaSach" Type="ChiTietPhieuMuon"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DocGia" Member="DocGiaRows">
+    <Type Name="DocGia">
+      <Column Name="MaDocGia" Member="MaDocGia" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="HoTen" Member="HoTen" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="DiaChi" Member="DiaChi" Type="System.String" DbType="nvarchar(150) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoDienThoai" Member="SoDienThoai" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_PhieuMuonSach_MaDocGia" Member="PhieuMuonByMaDocGia" ThisKey="MaDocGia" OtherKey="MaDocGia" Type="PhieuMuon"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.PhieuMuonSach" Member="PhieuMuonRows">
+    <Type Name="PhieuMuon">
+      <Column Name="SoPhieu" Member="SoPhieu" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaDocGia" Member="MaDocGia" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Column Name="HoTenNhanVien" Member="HoTenNhanVien" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayMuon" Member="NgayMuon" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_PhieuMuonSach_MaDocGia" Member="RefMaDocGia" ThisKey="MaDocGia" OtherKey="MaDocGia" Type="DocGia" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietPhieuMuon_SoPhieu" Member="ChiTietPhieuMuonBySoPhieu" ThisKey="SoPhieu" OtherKey="SoPhieu" Type="ChiTietPhieuMuon"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietPhieuMuon" Member="ChiTietPhieuMuonRows">
+    <Type Name="ChiTietPhieuMuon">
+      <Column Name="SoPhieu" Member="SoPhieu" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaSach" Member="MaSach" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="NgayHenTra" Member="NgayHenTra" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="NgayTra" Member="NgayTra" Type="System.DateTime" DbType="date" CanBeNull="true"/>
+      <Association Name="FK_ChiTietPhieuMuon_SoPhieu" Member="RefSoPhieu" ThisKey="SoPhieu" OtherKey="SoPhieu" Type="PhieuMuon" IsForeignKey="true"/>
+      <Association Name="FK_ChiTietPhieuMuon_MaSach" Member="RefMaSach" ThisKey="MaSach" OtherKey="MaSach" Type="Sach" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLTS.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLTSStore">
+    <EntitySet Name="UT" EntityType="QLTS.Store.UT" Schema="dbo" Table="UT"/>
+    <EntitySet Name="NH" EntityType="QLTS.Store.NH" Schema="dbo" Table="NH"/>
+    <EntitySet Name="TS" EntityType="QLTS.Store.TS" Schema="dbo" Table="TS"/>
+    <AssociationSet Name="FK_TS_MaUT" Association="QLTS.Store.FK_TS_MaUT">
+      <End Role="PrincipalRole" EntitySet="UT"/>
+      <End Role="DependentRole" EntitySet="TS"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_TS_MaN" Association="QLTS.Store.FK_TS_MaN">
+      <End Role="PrincipalRole" EntitySet="NH"/>
+      <End Role="DependentRole" EntitySet="TS"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UT">
+    <Key>
+      <PropertyRef Name="MaUT"/>
+    </Key>
+    <Property Name="MaUT" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenUT" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="DC" Nullable="false" Type="decimal" Precision="4" Scale="2"/>
+  </EntityType>
+  <EntityType Name="NH">
+    <Key>
+      <PropertyRef Name="MaN"/>
+    </Key>
+    <Property Name="MaN" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="TenN" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="SoCT" Nullable="false" Type="int"/>
+  </EntityType>
+  <EntityType Name="TS">
+    <Key>
+      <PropertyRef Name="SBD"/>
+    </Key>
+    <Property Name="SBD" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="Hoten" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="NS" Nullable="false" Type="date"/>
+    <Property Name="GT" Nullable="false" Type="nvarchar" MaxLength="8"/>
+    <Property Name="QQ" Nullable="false" Type="nvarchar" MaxLength="80"/>
+    <Property Name="DT" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+    <Property Name="DL" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+    <Property Name="DH" Nullable="true" Type="decimal" Precision="4" Scale="2"/>
+    <Property Name="SP" Nullable="false" Type="int"/>
+    <Property Name="MaUT" Nullable="true" Type="nvarchar" MaxLength="20"/>
+    <Property Name="MaN" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <Association Name="FK_TS_MaUT">
+    <End Role="PrincipalRole" Type="QLTS.Store.UT" Multiplicity="0..1"/>
+    <End Role="DependentRole" Type="QLTS.Store.TS" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaUT"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaUT"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TS_MaN">
+    <End Role="PrincipalRole" Type="QLTS.Store.NH" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLTS.Store.TS" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaN"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaN"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+  <EntityContainer Name="QLTXEntities">
+    <EntitySet Name="Xe" EntityType="ThucHanh9.Models.Xe"/>
+    <EntitySet Name="KhachHang" EntityType="ThucHanh9.Models.KhachHang"/>
+    <EntitySet Name="YeuCau" EntityType="ThucHanh9.Models.YeuCau"/>
+    <AssociationSet Name="FK_tblYeuCau_Maxe" Association="ThucHanh9.Models.FK_tblYeuCau_Maxe">
+      <End Role="PrincipalRole" EntitySet="Xe"/>
+      <End Role="DependentRole" EntitySet="YeuCau"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblYeuCau_MaK" Association="ThucHanh9.Models.FK_tblYeuCau_MaK">
+      <End Role="PrincipalRole" EntitySet="KhachHang"/>
+      <End Role="DependentRole" EntitySet="YeuCau"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="Maxe"/>
+    </Key>
+    <Property Name="Maxe" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Sokhung" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+    <Property Name="Somay" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+    <Property Name="HangSX" Nullable="false" Type="String" MaxLength="50" Unicode="true" FixedLength="false"/>
+    <Property Name="NamSX" Nullable="false" Type="Int32"/>
+    <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaK"/>
+    </Key>
+    <Property Name="MaK" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="TenK" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Coquan" Nullable="true" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+    <Property Name="Diachi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+    <Property Name="Tel" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+  </EntityType>
+  <EntityType Name="YeuCau">
+    <Key>
+      <PropertyRef Name="Maxe"/>
+      <PropertyRef Name="MaK"/>
+      <PropertyRef Name="Ngaymuon"/>
+    </Key>
+    <Property Name="Maxe" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="MaK" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+    <Property Name="Ngaymuon" Nullable="false" Type="DateTime"/>
+    <Property Name="Ngaytra" Nullable="false" Type="DateTime"/>
+  </EntityType>
+  <Association Name="FK_tblYeuCau_Maxe">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.Xe" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.YeuCau" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="Maxe"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="Maxe"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblYeuCau_MaK">
+    <End Role="PrincipalRole" Type="ThucHanh9.Models.KhachHang" Multiplicity="1"/>
+    <End Role="DependentRole" Type="ThucHanh9.Models.YeuCau" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaK"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaK"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

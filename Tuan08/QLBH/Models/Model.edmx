@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx" Version="3.0">
+  <edmx:Runtime>
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLBH.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityContainer Name="QLBHStore">
+          <EntitySet Name="MatHang" EntityType="QLBH.Store.MatHang" Schema="dbo" Table="MatHang"/>
+          <EntitySet Name="DaiLy" EntityType="QLBH.Store.DaiLy" Schema="dbo" Table="DaiLy"/>
+          <EntitySet Name="DonHang" EntityType="QLBH.Store.DonHang" Schema="dbo" Table="DonHang"/>
+          <EntitySet Name="ChiTietDonHang" EntityType="QLBH.Store.ChiTietDonHang" Schema="dbo" Table="ChiTietDonHang"/>
+          <AssociationSet Name="FK_DonHang_MaDaiLy" Association="QLBH.Store.FK_DonHang_MaDaiLy">
+            <End Role="PrincipalRole" EntitySet="DaiLy"/>
+            <End Role="DependentRole" EntitySet="DonHang"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDonHang_MaDonHang" Association="QLBH.Store.FK_ChiTietDonHang_MaDonHang">
+            <End Role="PrincipalRole" EntitySet="DonHang"/>
+            <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDonHang_MaMatHang" Association="QLBH.Store.FK_ChiTietDonHang_MaMatHang">
+            <End Role="PrincipalRole" EntitySet="MatHang"/>
+            <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MatHang">
+          <Key>
+            <PropertyRef Name="MaMatHang"/>
+          </Key>
+          <Property Name="MaMatHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="TenMatHang" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="XuatXu" Nullable="false" Type="nvarchar" MaxLength="60"/>
+          <Property Name="DonViTinh" Nullable="false" Type="nvarchar" MaxLength="30"/>
+        </EntityType>
+        <EntityType Name="DaiLy">
+          <Key>
+            <PropertyRef Name="MaDaiLy"/>
+          </Key>
+          <Property Name="MaDaiLy" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="TenDaiLy" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="DiaChi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+          <Property Name="SoDienThoai" Nullable="false" Type="nvarchar" MaxLength="20"/>
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang"/>
+          </Key>
+          <Property Name="MaDonHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaDaiLy" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="NguoiLap" Nullable="false" Type="nvarchar" MaxLength="100"/>
+          <Property Name="NgayLap" Nullable="false" Type="date"/>
+          <Property Name="NgayNhanHang" Nullable="false" Type="date"/>
+        </EntityType>
+        <EntityType Name="ChiTietDonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang"/>
+            <PropertyRef Name="MaMatHang"/>
+          </Key>
+          <Property Name="MaDonHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="MaMatHang" Nullable="false" Type="nvarchar" MaxLength="20"/>
+          <Property Name="SoLuong" Nullable="false" Type="int"/>
+          <Property Name="Gia" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <Association Name="FK_DonHang_MaDaiLy">
+          <End Role="PrincipalRole" Type="QLBH.Store.DaiLy" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLBH.Store.DonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDaiLy"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDaiLy"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDonHang_MaDonHang">
+          <End Role="PrincipalRole" Type="QLBH.Store.DonHang" Multiplicity="1">
+            <OnDelete Action="Cascade"/>
+          </End>
+          <End Role="DependentRole" Type="QLBH.Store.ChiTietDonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDonHang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDonHang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDonHang_MaMatHang">
+          <End Role="PrincipalRole" Type="QLBH.Store.MatHang" Multiplicity="1"/>
+          <End Role="DependentRole" Type="QLBH.Store.ChiTietDonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaMatHang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaMatHang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" Namespace="ThucHanh9.Models" Alias="Self">
+        <EntityContainer Name="QLBHEntities">
+          <EntitySet Name="MatHang" EntityType="ThucHanh9.Models.MatHang"/>
+          <EntitySet Name="DoiTac" EntityType="ThucHanh9.Models.DoiTac"/>
+          <EntitySet Name="DonHang" EntityType="ThucHanh9.Models.DonHang"/>
+          <EntitySet Name="ChiTietDonHang" EntityType="ThucHanh9.Models.ChiTietDonHang"/>
+          <AssociationSet Name="FK_DonHang_MaDaiLy" Association="ThucHanh9.Models.FK_DonHang_MaDaiLy">
+            <End Role="PrincipalRole" EntitySet="DoiTac"/>
+            <End Role="DependentRole" EntitySet="DonHang"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDonHang_MaDonHang" Association="ThucHanh9.Models.FK_ChiTietDonHang_MaDonHang">
+            <End Role="PrincipalRole" EntitySet="DonHang"/>
+            <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDonHang_MaMatHang" Association="ThucHanh9.Models.FK_ChiTietDonHang_MaMatHang">
+            <End Role="PrincipalRole" EntitySet="MatHang"/>
+            <End Role="DependentRole" EntitySet="ChiTietDonHang"/>
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MatHang">
+          <Key>
+            <PropertyRef Name="MaMatHang"/>
+          </Key>
+          <Property Name="MaMatHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="TenMatHang" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="XuatXu" Nullable="false" Type="String" MaxLength="60" Unicode="true" FixedLength="false"/>
+          <Property Name="DonViTinh" Nullable="false" Type="String" MaxLength="30" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="DoiTac">
+          <Key>
+            <PropertyRef Name="MaDaiLy"/>
+          </Key>
+          <Property Name="MaDaiLy" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="TenDaiLy" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="DiaChi" Nullable="false" Type="String" MaxLength="150" Unicode="true" FixedLength="false"/>
+          <Property Name="SoDienThoai" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang"/>
+          </Key>
+          <Property Name="MaDonHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaDaiLy" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="NguoiLap" Nullable="false" Type="String" MaxLength="100" Unicode="true" FixedLength="false"/>
+          <Property Name="NgayLap" Nullable="false" Type="DateTime"/>
+          <Property Name="NgayNhanHang" Nullable="false" Type="DateTime"/>
+        </EntityType>
+        <EntityType Name="ChiTietDonHang">
+          <Key>
+            <PropertyRef Name="MaDonHang"/>
+            <PropertyRef Name="MaMatHang"/>
+          </Key>
+          <Property Name="MaDonHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="MaMatHang" Nullable="false" Type="String" MaxLength="20" Unicode="true" FixedLength="false"/>
+          <Property Name="SoLuong" Nullable="false" Type="Int32"/>
+          <Property Name="Gia" Nullable="false" Type="Decimal" Precision="16" Scale="2"/>
+        </EntityType>
+        <Association Name="FK_DonHang_MaDaiLy">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.DoiTac" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.DonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDaiLy"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDaiLy"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDonHang_MaDonHang">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.DonHang" Multiplicity="1">
+            <OnDelete Action="Cascade"/>
+          </End>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietDonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaDonHang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaDonHang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDonHang_MaMatHang">
+          <End Role="PrincipalRole" Type="ThucHanh9.Models.MatHang" Multiplicity="1"/>
+          <End Role="DependentRole" Type="ThucHanh9.Models.ChiTietDonHang" Multiplicity="*"/>
+          <ReferentialConstraint>
+            <Principal Role="PrincipalRole">
+              <PropertyRef Name="MaMatHang"/>
+            </Principal>
+            <Dependent Role="DependentRole">
+              <PropertyRef Name="MaMatHang"/>
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <EntityContainerMapping StorageEntityContainer="QLBHStore" CdmEntityContainer="QLBHEntities">
+          <EntitySetMapping Name="MatHang">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.MatHang">
+              <MappingFragment StoreEntitySet="MatHang">
+                <ScalarProperty Name="MaMatHang" ColumnName="MaMatHang"/>
+                <ScalarProperty Name="TenMatHang" ColumnName="TenMatHang"/>
+                <ScalarProperty Name="XuatXu" ColumnName="XuatXu"/>
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoiTac">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.DoiTac">
+              <MappingFragment StoreEntitySet="DaiLy">
+                <ScalarProperty Name="MaDaiLy" ColumnName="MaDaiLy"/>
+                <ScalarProperty Name="TenDaiLy" ColumnName="TenDaiLy"/>
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi"/>
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonHang">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang"/>
+                <ScalarProperty Name="MaDaiLy" ColumnName="MaDaiLy"/>
+                <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap"/>
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap"/>
+                <ScalarProperty Name="NgayNhanHang" ColumnName="NgayNhanHang"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietDonHang">
+            <EntityTypeMapping TypeName="ThucHanh9.Models.ChiTietDonHang">
+              <MappingFragment StoreEntitySet="ChiTietDonHang">
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang"/>
+                <ScalarProperty Name="MaMatHang" ColumnName="MaMatHang"/>
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong"/>
+                <ScalarProperty Name="Gia" ColumnName="Gia"/>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <edmx:Designer>
+    <edmx:Connection/>
+    <edmx:Options/>
+    <edmx:Diagrams>
+      <edmx:Diagram DiagramId="ee267a14-c040-5e6d-8971-f3882a82c339" Name="QLBH" ZoomLevel="90">
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.MatHang" Width="2.1" PointX="0.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.DoiTac" Width="2.1" PointX="3.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.DonHang" Width="2.1" PointX="6.6" PointY="0.6"/>
+        <edmx:EntityTypeShape EntityType="ThucHanh9.Models.ChiTietDonHang" Width="2.1" PointX="0.6" PointY="4.6"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_DonHang_MaDaiLy"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_ChiTietDonHang_MaDonHang"/>
+        <edmx:AssociationConnector Association="ThucHanh9.Models.FK_ChiTietDonHang_MaMatHang"/>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

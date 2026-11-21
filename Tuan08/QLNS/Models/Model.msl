@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLNSStore" CdmEntityContainer="QLNSEntities">
+    <EntitySetMapping Name="PhongBan">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.PhongBan">
+        <MappingFragment StoreEntitySet="tblPhongBan">
+          <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan"/>
+          <ScalarProperty Name="TenPhongBan" ColumnName="TenPhongBan"/>
+          <ScalarProperty Name="SoDTPB" ColumnName="SoDTPB"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucVu">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.ChucVu">
+        <MappingFragment StoreEntitySet="tblChucVu">
+          <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu"/>
+          <ScalarProperty Name="TenChucVu" ColumnName="TenChucVu"/>
+          <ScalarProperty Name="PhuCapChucVu" ColumnName="PhuCapChucVu"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanVien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.NhanVien">
+        <MappingFragment StoreEntitySet="tblNhanVien">
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien"/>
+          <ScalarProperty Name="HoTenNhanVien" ColumnName="HoTenNhanVien"/>
+          <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan"/>
+          <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu"/>
+          <ScalarProperty Name="SCMND" ColumnName="SCMND"/>
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi"/>
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh"/>
+          <ScalarProperty Name="QueQuan" ColumnName="QueQuan"/>
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh"/>
+          <ScalarProperty Name="SoDT" ColumnName="SoDT"/>
+          <ScalarProperty Name="NgayVaoLam" ColumnName="NgayVaoLam"/>
+          <ScalarProperty Name="SoBHYT" ColumnName="SoBHYT"/>
+          <ScalarProperty Name="SoBHXH" ColumnName="SoBHXH"/>
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh"/>
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

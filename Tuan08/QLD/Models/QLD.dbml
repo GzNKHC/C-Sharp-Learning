@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLD" Class="QLDDataContext">
+  <Table Name="dbo.Lop" Member="LopRows">
+    <Type Name="Lop">
+      <Column Name="MaL" Member="MaL" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenL" Member="TenL" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_SV_MaL" Member="SinhVienByMaL" ThisKey="MaL" OtherKey="MaL" Type="SinhVien"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.SV" Member="SinhVienRows">
+    <Type Name="SinhVien">
+      <Column Name="MaSV" Member="MaSV" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Hoten" Member="Hoten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="GT" Member="GT" Type="System.String" DbType="nvarchar(8) NOT NULL" CanBeNull="false"/>
+      <Column Name="NS" Member="NS" Type="System.DateTime" DbType="date NOT NULL" CanBeNull="false"/>
+      <Column Name="QQ" Member="QQ" Type="System.String" DbType="nvarchar(80) NOT NULL" CanBeNull="false"/>
+      <Column Name="MaL" Member="MaL" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_SV_MaL" Member="RefMaL" ThisKey="MaL" OtherKey="MaL" Type="Lop" IsForeignKey="true"/>
+      <Association Name="FK_DangKyHocPhan_MaSV" Member="DangKyByMaSV" ThisKey="MaSV" OtherKey="MaSV" Type="DangKy"/>
+      <Association Name="FK_Diem_MaSV" Member="KetQuaByMaSV" ThisKey="MaSV" OtherKey="MaSV" Type="KetQua"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.HP" Member="HocPhanRows">
+    <Type Name="HocPhan">
+      <Column Name="MaHP" Member="MaHP" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="TenHP" Member="TenHP" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="SoTC" Member="SoTC" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="HK" Member="HK" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DangKyHocPhan_MaHP" Member="DangKyByMaHP" ThisKey="MaHP" OtherKey="MaHP" Type="DangKy"/>
+      <Association Name="FK_Diem_MaHP" Member="KetQuaByMaHP" ThisKey="MaHP" OtherKey="MaHP" Type="KetQua"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DangKyHocPhan" Member="DangKyRows">
+    <Type Name="DangKy">
+      <Column Name="MaSV" Member="MaSV" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaHP" Member="MaHP" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Association Name="FK_DangKyHocPhan_MaSV" Member="RefMaSV" ThisKey="MaSV" OtherKey="MaSV" Type="SinhVien" IsForeignKey="true"/>
+      <Association Name="FK_DangKyHocPhan_MaHP" Member="RefMaHP" ThisKey="MaHP" OtherKey="MaHP" Type="HocPhan" IsForeignKey="true"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.Diem" Member="KetQuaRows">
+    <Type Name="KetQua">
+      <Column Name="MaSV" Member="MaSV" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="MaHP" Member="MaHP" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="Diem" Member="Diem" Type="System.Decimal" DbType="decimal(4,2) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_Diem_MaSV" Member="RefMaSV" ThisKey="MaSV" OtherKey="MaSV" Type="SinhVien" IsForeignKey="true"/>
+      <Association Name="FK_Diem_MaHP" Member="RefMaHP" ThisKey="MaHP" OtherKey="MaHP" Type="HocPhan" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

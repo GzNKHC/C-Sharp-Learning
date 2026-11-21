@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="QLNS.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityContainer Name="QLNSStore">
+    <EntitySet Name="tblPhongBan" EntityType="QLNS.Store.tblPhongBan" Schema="dbo" Table="tblPhongBan"/>
+    <EntitySet Name="tblChucVu" EntityType="QLNS.Store.tblChucVu" Schema="dbo" Table="tblChucVu"/>
+    <EntitySet Name="tblNhanVien" EntityType="QLNS.Store.tblNhanVien" Schema="dbo" Table="tblNhanVien"/>
+    <AssociationSet Name="FK_tblNhanVien_MaPhongBan" Association="QLNS.Store.FK_tblNhanVien_MaPhongBan">
+      <End Role="PrincipalRole" EntitySet="tblPhongBan"/>
+      <End Role="DependentRole" EntitySet="tblNhanVien"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNhanVien_MaChucVu" Association="QLNS.Store.FK_tblNhanVien_MaChucVu">
+      <End Role="PrincipalRole" EntitySet="tblChucVu"/>
+      <End Role="DependentRole" EntitySet="tblNhanVien"/>
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblPhongBan">
+    <Key>
+      <PropertyRef Name="MaPhongBan"/>
+    </Key>
+    <Property Name="MaPhongBan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TenPhongBan" Nullable="false" Type="nvarchar" MaxLength="25"/>
+    <Property Name="SoDTPB" Nullable="false" Type="nvarchar" MaxLength="20"/>
+  </EntityType>
+  <EntityType Name="tblChucVu">
+    <Key>
+      <PropertyRef Name="MaChucVu"/>
+    </Key>
+    <Property Name="MaChucVu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="TenChucVu" Nullable="false" Type="nvarchar" MaxLength="30"/>
+    <Property Name="PhuCapChucVu" Nullable="false" Type="decimal" Precision="16" Scale="2"/>
+  </EntityType>
+  <EntityType Name="tblNhanVien">
+    <Key>
+      <PropertyRef Name="MaNhanVien"/>
+    </Key>
+    <Property Name="MaNhanVien" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="HoTenNhanVien" Nullable="false" Type="nvarchar" MaxLength="100"/>
+    <Property Name="MaPhongBan" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="MaChucVu" Nullable="false" Type="nvarchar" MaxLength="12"/>
+    <Property Name="SCMND" Nullable="true" Type="nvarchar" MaxLength="15"/>
+    <Property Name="DiaChi" Nullable="false" Type="nvarchar" MaxLength="150"/>
+    <Property Name="GioiTinh" Nullable="false" Type="nvarchar" MaxLength="8"/>
+    <Property Name="QueQuan" Nullable="false" Type="nvarchar" MaxLength="80"/>
+    <Property Name="NgaySinh" Nullable="false" Type="date"/>
+    <Property Name="SoDT" Nullable="false" Type="nvarchar" MaxLength="20"/>
+    <Property Name="NgayVaoLam" Nullable="false" Type="date"/>
+    <Property Name="SoBHYT" Nullable="true" Type="nvarchar" MaxLength="20"/>
+    <Property Name="SoBHXH" Nullable="true" Type="nvarchar" MaxLength="20"/>
+    <Property Name="HinhAnh" Nullable="true" Type="nvarchar" MaxLength="255"/>
+    <Property Name="GhiChu" Nullable="true" Type="nvarchar" MaxLength="255"/>
+  </EntityType>
+  <Association Name="FK_tblNhanVien_MaPhongBan">
+    <End Role="PrincipalRole" Type="QLNS.Store.tblPhongBan" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLNS.Store.tblNhanVien" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaPhongBan"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaPhongBan"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNhanVien_MaChucVu">
+    <End Role="PrincipalRole" Type="QLNS.Store.tblChucVu" Multiplicity="1"/>
+    <End Role="DependentRole" Type="QLNS.Store.tblNhanVien" Multiplicity="*"/>
+    <ReferentialConstraint>
+      <Principal Role="PrincipalRole">
+        <PropertyRef Name="MaChucVu"/>
+      </Principal>
+      <Dependent Role="DependentRole">
+        <PropertyRef Name="MaChucVu"/>
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

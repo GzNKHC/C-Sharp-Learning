@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Database xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" Name="QLKH" Class="QLKHDataContext">
+  <Table Name="dbo.HANGSX" Member="HangRows">
+    <Type Name="Hang">
+      <Column Name="mahang" Member="mahang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="tenhang" Member="tenhang" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DIENTHOAI_mahang" Member="DienThoaiBymahang" ThisKey="mahang" OtherKey="mahang" Type="DienThoai"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.DIENTHOAI" Member="DienThoaiRows">
+    <Type Name="DienThoai">
+      <Column Name="ma" Member="ma" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true"/>
+      <Column Name="ten" Member="ten" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false"/>
+      <Column Name="dongia" Member="dongia" Type="System.Decimal" DbType="decimal(16,2) NOT NULL" CanBeNull="false"/>
+      <Column Name="tonkho" Member="tonkho" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false"/>
+      <Column Name="mahang" Member="mahang" Type="System.String" DbType="nvarchar(20) NOT NULL" CanBeNull="false"/>
+      <Association Name="FK_DIENTHOAI_mahang" Member="Refmahang" ThisKey="mahang" OtherKey="mahang" Type="Hang" IsForeignKey="true"/>
+    </Type>
+  </Table>
+</Database>

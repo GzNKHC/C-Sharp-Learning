@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <EntityContainerMapping StorageEntityContainer="QLGVStore" CdmEntityContainer="QLGVEntities">
+    <EntitySetMapping Name="CoSo">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.CoSo">
+        <MappingFragment StoreEntitySet="COSO">
+          <ScalarProperty Name="Macoso" ColumnName="Macoso"/>
+          <ScalarProperty Name="Tencoso" ColumnName="Tencoso"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonVi">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.DonVi">
+        <MappingFragment StoreEntitySet="DONVI">
+          <ScalarProperty Name="Madonvi" ColumnName="Madonvi"/>
+          <ScalarProperty Name="Tendonvi" ColumnName="Tendonvi"/>
+          <ScalarProperty Name="Macoso" ColumnName="Macoso"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GiaoVien">
+      <EntityTypeMapping TypeName="ThucHanh9.Models.GiaoVien">
+        <MappingFragment StoreEntitySet="GV">
+          <ScalarProperty Name="Magv" ColumnName="Magv"/>
+          <ScalarProperty Name="Hoten" ColumnName="Hoten"/>
+          <ScalarProperty Name="Sdt" ColumnName="Sdt"/>
+          <ScalarProperty Name="Ghichu" ColumnName="Ghichu"/>
+          <ScalarProperty Name="Madonvi" ColumnName="Madonvi"/>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
