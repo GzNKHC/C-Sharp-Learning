@@ -1,0 +1,37 @@
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Sản phẩm";
+    var categories = (IEnumerable<Category>)ViewBag.Categories;
+    var chosen = (int?)ViewBag.CategoryId;
+}
+<section class="hero"><div class="container hero-inner"><div><span class="eyebrow">Bộ sưu tập công nghệ</span>
+    <h1>Chọn điều bạn yêu.<br />Thỏa sức sáng tạo.</h1>
+    <p>Thiết bị hữu ích cho những ngày học tập, làm việc và lưu giữ khoảnh khắc.</p>
+    <a href="#san-pham" class="button button-light">Khám phá sản phẩm →</a>
+</div><img class="hero-art" src="~/images/laptop.svg" alt="Máy tính xách tay nổi bật" /></div></section>
+<main class="container" id="san-pham"><div class="section-intro"><span class="tag">Dành cho bạn</span><h2>Sản phẩm nổi bật</h2><p>Xem chi tiết, thêm mới hoặc cập nhật sản phẩm của bạn.</p></div>
+@if (TempData["Success"] is string message) { <div class="notice" role="status">@message</div> }
+<form asp-action="Index" method="get" class="searchbar" aria-label="Lọc sản phẩm">
+    <input type="search" name="search" value="@ViewBag.Search" placeholder="Tìm theo tên sản phẩm" aria-label="Tìm kiếm" />
+    <select name="categoryId" aria-label="Chọn danh mục">
+        <option value="">Tất cả danh mục</option>
+        @foreach (var category in categories)
+        {
+            <option value="@category.Id" selected="@(chosen == category.Id)">@category.Name</option>
+        }
+    </select>
+    <button class="button" type="submit">Tìm kiếm</button><a asp-action="Add" class="button button-outline">+ Thêm sản phẩm</a>
+</form>
+<div class="content-grid"><section class="product-grid" aria-label="Danh sách sản phẩm">
+@foreach (var p in Model)
+{
+    <article class="card"><a asp-action="Display" asp-route-id="@p.Id"><img src="@(p.ImageUrl ?? "/images/placeholder.svg")" alt="@p.Name" /></a>
+        <div class="card-body"><span class="tag">@(categories.FirstOrDefault(c => c.Id == p.CategoryId)?.Name)</span>
+            <h3><a asp-action="Display" asp-route-id="@p.Id">@p.Name</a></h3>
+            <p>@p.Description</p>
+            <div class="card-bottom"><span class="price">@p.Price.ToString("N0") ₫</span><a class="text-link" asp-action="Display" asp-route-id="@p.Id">Chi tiết →</a></div>
+        </div>
+    </article>
+}
+@if (!Model.Any()) { <div class="empty">Không tìm thấy sản phẩm. <a asp-action="Index" class="text-link">Xem tất cả</a></div> }
+</section><partial name="_SocialSidebar" /></div></main>

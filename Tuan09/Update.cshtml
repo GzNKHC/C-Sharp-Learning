@@ -1,0 +1,41 @@
+using Lab2.Models;
+
+namespace Lab2.Repositories;
+
+public class MockProductRepository : IProductRepository
+{
+    private readonly object _sync = new();
+    private int _nextId = 5;
+    private readonly List<Product> _products = new()
+    {
+        new() { Id = 1, Name = "Laptop Aurora 14", Price = 16990000, Description = "Laptop mỏng nhẹ cho học tập và làm việc, màn hình sắc nét.", CategoryId = 1, ImageUrl = "/images/laptop.svg" },
+        new() { Id = 2, Name = "Tai nghe Pulse One", Price = 1290000, Description = "Âm thanh rõ ràng, đệm tai êm và kết nối linh hoạt.", CategoryId = 2, ImageUrl = "/images/headphones.svg" },
+        new() { Id = 3, Name = "Máy ảnh Moment X", Price = 8490000, Description = "Lưu giữ mọi khoảnh khắc với thiết kế thân thiện.", CategoryId = 3, ImageUrl = "/images/camera.svg" },
+        new() { Id = 4, Name = "Bàn phím Leaf 80", Price = 1690000, Description = "Gõ êm, bố cục gọn và phù hợp mọi góc làm việc.", CategoryId = 4, ImageUrl = "/images/keyboard.svg" }
+    };
+    private static Product Copy(Product p) => new()
+    {
+        Id = p.Id, Name = p.Name, Price = p.Price, Description = p.Description,
+        CategoryId = p.CategoryId, ImageUrl = p.ImageUrl, ImageUrls = p.ImageUrls.ToList()
+    };
+    public IEnumerable<Product> GetAll() { lock (_sync) return _products.Select(Copy).ToList(); }
+    public Product? GetById(int id) { lock (_sync) return _products.Where(p => p.Id == id).Select(Copy).FirstOrDefault(); }
+    public void Add(Product product)
+    {
+        lock (_sync) { product.Id = _nextId++; _products.Add(Copy(product)); }
+    }
+    public bool Update(Product product)
+    {
+        lock (_sync)
+        {
+            int index = _products.FindIndex(p => p.Id == product.Id);
+            if (index < 0) return false;
+            _products[index] = Copy(product);
+            return true;
+        }
+    }
+    public bool Delete(int id)
+    {
+        lock (_sync) return _products.RemoveAll(p => p.Id == id) > 0;
+    }
+}

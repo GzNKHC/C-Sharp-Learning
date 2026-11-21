@@ -1,0 +1,10 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+<main class="container"><div class="breadcrumbs"><a asp-action="Index">Trang chủ</a> / Sản phẩm / @Model.Name</div>
+<div class="detail-grid"><div><img class="detail-picture" src="@(Model.ImageUrl ?? "/images/placeholder.svg")" alt="@Model.Name" />
+@if (Model.ImageUrls.Count > 0) { <div class="gallery">@foreach (var img in Model.ImageUrls) { <img src="@img" alt="Ảnh bổ sung của @Model.Name" /> }</div> }
+</div><div class="detail-info"><span class="tag">Sản phẩm #@Model.Id</span><h1>@Model.Name</h1>
+<p>@Model.Description</p><strong class="price">@Model.Price.ToString("N0") ₫</strong>
+<div class="detail-actions"><a asp-action="Index" class="button">← Tiếp tục mua sắm</a><a asp-action="Update" asp-route-id="@Model.Id" class="button button-outline">Chỉnh sửa</a><a asp-action="Delete" asp-route-id="@Model.Id" class="button button-outline">Xóa</a></div></div></div></main>

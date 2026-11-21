@@ -1,0 +1,5 @@
+@model Product
+@{ ViewData["Title"] = "Xóa sản phẩm"; }
+<main class="container"><div class="page-head"><h1>Xác nhận xóa</h1><p>Bạn có chắc muốn xóa sản phẩm này?</p></div>
+<div class="panel form-panel"><h2>@Model.Name</h2><p>@Model.Description</p><strong class="price">@Model.Price.ToString("N0") ₫</strong>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post"><div class="detail-actions"><button class="button button-danger" type="submit">Xác nhận xóa</button><a asp-action="Index" class="button button-outline">Hủy</a></div></form></div></main>

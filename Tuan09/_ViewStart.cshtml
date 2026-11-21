@@ -1,0 +1,4 @@
+@model IEnumerable<Category>
+@{ ViewData["Title"] = "Danh mục"; }
+<main class="container"><div class="page-head"><h1>Danh mục sản phẩm</h1><p>Chọn danh mục để xem các sản phẩm tương ứng.</p></div>
+<div class="category-list">@foreach (var category in Model) { <a class="panel" asp-controller="Product" asp-action="Index" asp-route-categoryId="@category.Id"><span class="tag">Danh mục @category.Id</span><h2>@category.Name →</h2></a> }</div></main>

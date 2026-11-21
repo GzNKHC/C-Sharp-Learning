@@ -1,0 +1,7 @@
+@model ProductFormViewModel
+@{ ViewData["Title"] = "Thêm sản phẩm"; }
+<main class="container"><div class="page-head"><h1>Thêm sản phẩm</h1><p>Nhập thông tin và tải ảnh lên để giới thiệu sản phẩm mới.</p></div>
+<div class="panel form-panel"><form asp-action="Add" method="post" enctype="multipart/form-data" class="form-grid">
+    <partial name="_ProductForm" model="Model" />
+    <div class="detail-actions"><button class="button" type="submit">Lưu sản phẩm</button><a asp-action="Index" class="button button-outline">Quay lại</a></div>
+</form></div></main>

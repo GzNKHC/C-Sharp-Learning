@@ -1,0 +1,16 @@
+using Lab2.Models;
+
+namespace Lab2.Repositories;
+
+public class MockCategoryRepository : ICategoryRepository
+{
+    private readonly Category[] _categories =
+    {
+        new() { Id = 1, Name = "Laptop" },
+        new() { Id = 2, Name = "Âm thanh" },
+        new() { Id = 3, Name = "Hình ảnh" },
+        new() { Id = 4, Name = "Phụ kiện" }
+    };
+    public IEnumerable<Category> GetAllCategories() => _categories.Select(x => new Category { Id = x.Id, Name = x.Name }).ToList();
+    public Category? GetById(int id) => GetAllCategories().FirstOrDefault(x => x.Id == id);
+}

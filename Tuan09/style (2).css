@@ -1,0 +1,2 @@
+@{ ViewData["Title"] = "Liên hệ"; }
+<main class="container"><div class="page-head"><h1>Liên hệ LumiTech</h1><p>Chúng tôi sẵn sàng giúp bạn tìm thiết bị phù hợp.</p></div><div class="panel form-panel"><h2>Kết nối với chúng tôi</h2><p>Địa chỉ: Thành phố Hồ Chí Minh</p><p>Email: <a class="text-link" href="mailto:hello@lumitech.example">hello@lumitech.example</a></p><p>Đây là địa chỉ minh họa cho bài thực hành.</p></div></main>

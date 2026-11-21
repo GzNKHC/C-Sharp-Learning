@@ -1,0 +1,9 @@
+using Lab2.Models;
+
+namespace Lab2.Repositories;
+
+public interface ICategoryRepository
+{
+    IEnumerable<Category> GetAllCategories();
+    Category? GetById(int id);
+}

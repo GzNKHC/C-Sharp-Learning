@@ -1,0 +1,2 @@
+@{ ViewData["Title"] = "Có lỗi xảy ra"; }
+<main class="container"><div class="page-head"><h1>Ứng dụng gặp lỗi.</h1><p>Vui lòng thử lại sau.</p></div><a asp-controller="Product" asp-action="Index" class="button">Về danh sách sản phẩm</a></main>

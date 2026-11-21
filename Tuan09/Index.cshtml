@@ -1,0 +1,20 @@
+using Lab2.Repositories;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+// Singleton giữ dữ liệu mẫu giữa các yêu cầu khi ứng dụng đang chạy.
+builder.Services.AddSingleton<ICategoryRepository, MockCategoryRepository>();
+builder.Services.AddSingleton<IProductRepository, MockProductRepository>();
+
+var app = builder.Build();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllerRoute("default", "{controller=Product}/{action=Index}/{id?}");
+app.Run();
